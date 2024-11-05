@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "785753496858",
+    "project_id": "servicea-driver",
+    "storage_bucket": "servicea-driver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785753496858:android:d552a6fcdce2e788c8a0a3",
+        "android_client_info": {
+          "package_name": "com.servicea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "785753496858-dtbp20tpn66qsa83hskuoa621ks8pc24.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.servicea",
+            "certificate_hash": "d4d3d6023006283da4bd2bdfc07696fb86b0a3c1"
+          }
+        },
+        {
+          "client_id": "785753496858-t37r33vslqh120juiol1k5a3vembp1aa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu5XN7-Z86lr8i76pZkphbysBuAxvWvhU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "785753496858-t37r33vslqh120juiol1k5a3vembp1aa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

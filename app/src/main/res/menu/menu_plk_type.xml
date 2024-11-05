@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/plk_general"
+        android:title="@string/menu_plk_general" />
+    <item
+        android:id="@+id/plk_taxi"
+        android:title="@string/menu_plk_taxi" />
+    <item
+        android:id="@+id/plk_edari"
+        android:title="@string/menu_plk_edari" />
+    <item
+        android:id="@+id/plk_entezami"
+        android:title="@string/menu_plk_entezami" />
+    <item
+        android:id="@+id/plk_malolin"
+        android:title="@string/menu_plk_malolin" />
+    <item
+        android:id="@+id/plk_azad_new"
+        android:title="@string/menu_plk_azad_new" />
+    <item
+        android:id="@+id/plk_azad_old"
+        android:title="@string/menu_plk_azad_old" />
+</menu>

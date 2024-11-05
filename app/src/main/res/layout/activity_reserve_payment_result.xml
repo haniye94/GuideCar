@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.servicea.activity.ReservePaymentResultActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_action_bar_customer" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <ImageView
+            android:id="@+id/iv_reserve_payment_result"
+            android:layout_width="157dp"
+            android:layout_height="154dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="120dp"
+            android:src="@drawable/success_payment" />
+
+        <TextView
+            android:id="@+id/txt_payment_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:lineSpacingExtra="2.5dp"
+            android:textColor="@color/success_color"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/txt_reserve_product_groups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:lineSpacingExtra="2.5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textColor="@color/dark_text_color_shade1"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/txt_reserve_result_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:gravity="center"
+            android:lineSpacingExtra="2.5dp"
+            android:textColor="@color/dark_text_color_shade2"
+            android:textSize="16dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_map_direction"
+            android:layout_width="225dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/shap_button"
+            android:letterSpacing="-0.1"
+            android:stateListAnimator="@null"
+            android:visibility="gone"
+            android:text="@string/map_direction"
+            android:textColor="@color/text_light"
+            android:textSize="19dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_change_reserve_time"
+            android:layout_width="225dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/shap_button"
+            android:letterSpacing="-0.1"
+            android:stateListAnimator="@null"
+            android:visibility="gone"
+            android:text="@string/change_reserve_time"
+            android:textColor="@color/text_light"
+            android:textSize="19dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

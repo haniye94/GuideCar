@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvCaldroid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:foreground="?selectableItemBackground"
+    android:layoutDirection="rtl"
+    android:background="#fcfcfc"
+    android:orientation="vertical"
+    app:cardCornerRadius="1dp">
+
+   <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       app:cardBackgroundColor="#979797"
+       app:cardCornerRadius="25dp"
+       android:layout_height="250dp"
+       android:layout_marginTop="12dp">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:background="@color/dark_bg"
+       android:orientation="vertical">
+
+      <ImageView
+          android:id="@+id/iv_calendar_bg"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:tint="@color/dark_bg"
+          android:tintMode="screen"
+          android:foregroundTint="@color/dark_bg"
+          android:foregroundTintMode="screen"
+          android:foreground="@color/dark_bg"
+          android:scaleType="fitXY"
+          />
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rv_calendar_day"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="8dp"
+          />
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rv_calendar"
+          android:layout_below="@id/rv_calendar_day"
+          android:layout_width="match_parent"
+          android:padding="12dp"
+          android:layout_height="wrap_content"/>
+   </RelativeLayout>
+   </androidx.cardview.widget.CardView>
+
+
+   <TextView
+       android:id="@+id/txt_title_choose_category"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="16dp"
+       android:gravity="center"
+       android:text="@string/choose_reserve_time"
+       android:textColor="#646464"
+       android:textSize="17dp" />
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rv_reserve_times"
+          android:layout_weight="1"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_marginTop="8dp"
+          android:layoutDirection="rtl"
+          android:visibility="gone"/>
+
+      <com.facebook.shimmer.ShimmerFrameLayout
+          android:id="@+id/reserve_shimmer_layout"
+          android:layout_weight="1"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          tools:ignore="MissingConstraints"
+          android:layout_marginTop="8dp"
+          android:visibility="invisible"
+          >
+         <include
+             layout="@layout/layout_reserve_shimmer"/>
+      </com.facebook.shimmer.ShimmerFrameLayout>
+
+      <TextView
+          android:id="@+id/txt_full_reserve_time_message"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:gravity="center"
+          android:lineSpacingExtra="2.5dp"
+          android:text="@string/full_reserve_time_message"
+          android:textColor="#646464"
+          android:textSize="15dp"
+          android:layout_gravity="bottom"
+          />
+
+      <androidx.appcompat.widget.AppCompatButton
+          android:id="@+id/btn_cancel"
+          android:layout_width="200dp"
+          android:layout_height="wrap_content"
+          android:layout_gravity="bottom|left"
+          android:layout_marginTop="4dp"
+          android:background="@drawable/shap_button"
+          android:backgroundTint="@color/gray_button_color"
+          android:paddingLeft="10dp"
+          android:paddingRight="10dp"
+          android:stateListAnimator="@null"
+          android:text="انصراف"
+          android:textColor="@color/white"
+          android:textSize="18dp" />
+</LinearLayout>
+
+

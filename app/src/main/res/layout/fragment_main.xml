@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:textDirection="rtl">
+
+    <!--    <include layout="@layout/layout_action_bar" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/background"
+        android:gravity="left|center"
+        android:layoutDirection="rtl"
+        android:orientation="horizontal"
+        android:textDirection="rtl">
+
+        <RelativeLayout
+            android:id="@+id/alarms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:onClick="onclickAlamrs">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_notifications" />
+
+            <LinearLayout
+                android:layout_width="20dp"
+                android:layout_height="19dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/shap_plus_red"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+
+                    android:textColor="@color/text_light"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+        <ImageView
+            android:id="@+id/ic_reserve_list"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/ic_reserve_list" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:padding="15dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/titlelogo" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingRight="10dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/ic_blue" />
+
+                <TextView
+                    android:id="@+id/txt_title_advertisetop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="-0.1dp"
+                    android:text="جستجوی پلاک خودرو"
+                    android:textColor="@color/text_dark"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/searchpelak"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/shap_simple_rec"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/ly_plak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/shap_edittext"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <EditText
+                            android:id="@+id/edt8"
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|bottom"
+                            android:imeOptions="actionSearch"
+                            android:inputType="number"
+                            android:layoutDirection="ltr"
+                            android:maxLength="1"
+                            android:textColor="@color/text_low_dark"
+                            android:textDirection="ltr"
+                            android:textSize="25dp" />
+
+                        <EditText
+                            android:id="@+id/edt7"
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center|bottom"
+                            android:inputType="number"
+                            android:layoutDirection="ltr"
+                            android:maxLength="1"
+                            android:textColor="@color/text_low_dark"
+                            android:textDirection="ltr"
+                            android:textSize="25dp" />
+
+                        <TextView
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:background="@color/border_edt" />
+
+
+                        <EditText
+                            android:id="@+id/edt6"
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center|bottom"
+                            android:inputType="number"
+                            android:layoutDirection="ltr"
+                            android:maxLength="1"
+                            android:textColor="@color/text_low_dark"
+                            android:textDirection="ltr"
+                            android:textSize="25dp" />
+
+                        <EditText
+                            android:id="@+id/edt5"
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|bottom"
+                            android:inputType="number"
+                            android:layoutDirection="ltr"
+                            android:maxLength="1"
+                            android:textColor="@color/text_low_dark"
+                            android:textDirection="ltr"
+                            android:textSize="25dp" />
+
+                        <EditText
+                            android:id="@+id/edt4"
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="center|bottom"
+                            android:inputType="number"
+                            android:layoutDirection="ltr"
+                            android:maxLength="1"
+                            android:textColor="@color/text_low_dark"
+                            android:textDirection="ltr"
+                            android:textSize="25dp" />
+
+                        <EditText
+                            android:id="@+id/edt3"
+                            android:layout_width="40dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginRight="7dp"
+                            android:gravity="center|bottom"
+                            android:inputType="text"
+                            android:layoutDirection="ltr"
+                            android:maxLength="1"
+                            android:textColor="@color/text_low_dark"
+                            android:textDirection="ltr"
+                            android:textSize="25dp" />
+
+                        <EditText
+                            android:id="@+id/edt2"
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center|bottom"
+                            android:inputType="number"
+                            android:layoutDirection="ltr"
+                            android:maxLength="1"
+                            android:textColor="@color/text_low_dark"
+                            android:textDirection="ltr"
+                            android:textSize="25dp" />
+
+                        <EditText
+                            android:id="@+id/edt1"
+                            android:layout_width="25dp"
+                            android:layout_height="wrap_content"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:focusedByDefault="true"
+                            android:gravity="center|bottom"
+                            android:inputType="number"
+                            android:layoutDirection="ltr"
+                            android:maxLength="1"
+                            android:textColor="@color/text_low_dark"
+                            android:textDirection="ltr"
+                            android:textSize="25dp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edt_phone"
+                        style="@style/edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:focusableInTouchMode="true"
+                        android:hint="موبایل"
+                        android:inputType="number"
+                        android:visibility="gone"
+                        app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
+                        app:boxStrokeErrorColor="#CCFD2D2D"
+                        app:boxStrokeWidthFocused="1dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_phone_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:focusableInTouchMode="true"
+                            android:inputType="number"
+                            android:textColor="@color/text_low_dark"
+                            android:textColorHint="@color/text_low_dark"
+                            android:textSize="13dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txt_search_plak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="33dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/back_blue"
+                        android:drawableRight="@drawable/ic_searchv"
+
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:letterSpacing="-0.1"
+                        android:paddingLeft="31dp"
+
+                        android:paddingTop="5dp"
+
+                        android:paddingRight="15dp"
+
+                        android:paddingBottom="5dp"
+                        android:text="جستجو"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+
+                    <TextView
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:background="@color/border_edt"
+                        android:paddingTop="7dp"
+                        android:paddingBottom="7dp" />
+
+                    <TextView
+                        android:id="@+id/txt_search_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="33dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/back_gray"
+                        android:gravity="center"
+                        android:letterSpacing="-0.1"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="15dp"
+
+                        android:paddingBottom="5dp"
+                        android:text="پلاک خوان"
+
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/service_badi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/service_next"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="7dp"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingRight="10dp">
+
+                                <ImageView
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="5dp"
+                                    android:src="@drawable/ic_main_bg_message" />
+
+                                <TextView
+                                    android:id="@+id/txt_next_serv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:lineSpacingExtra="-0.1dp"
+                                    android:text="سرویس بعدی"
+                                    android:textColor="@color/text_dark"
+                                    android:textSize="15dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="2dp"
+                                app:cardBackgroundColor="#fff"
+                                app:cardCornerRadius="4dp"
+                                app:cardElevation="1dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:visibility="gone"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/layout_item_next_service"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:id="@+id/txt_product_name"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginRight="8dp"
+                                                android:layout_weight="1.3"
+                                                android:gravity="right"
+                                                android:padding="8dp"
+                                                android:text="روغن موتور"
+                                                android:textColor="#444"
+                                                android:textSize="13dp" />
+
+                                            <TextView
+                                                android:id="@+id/txt_car_name"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginRight="8dp"
+                                                android:layout_weight="0.7"
+                                                android:gravity="center"
+                                                android:padding="8dp"
+                                                android:text="نام خودرو"
+                                                android:textColor="#444"
+                                                android:textSize="13dp" />
+
+                                            <TextView
+                                                android:id="@+id/txt_date"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginRight="8dp"
+                                                android:layout_weight="0.7"
+                                                android:gravity="left"
+                                                android:padding="8dp"
+                                                android:text="1401/08/15"
+                                                android:textColor="#444"
+                                                android:textSize="13dp" />
+                                        </LinearLayout>
+                                        <TextView
+                                            android:id="@+id/empty_next_service"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:layout_marginRight="8dp"
+                                            android:padding="8dp"
+                                            android:gravity="center"
+                                            android:text="شما درحال حاضر سرویس نزدیکی ندارید"
+                                            android:textColor="#444"
+                                            android:textSize="13dp" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/next_service_shimmer_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="MissingConstraints"
+                        android:layout_marginTop="8dp">
+                        <include
+                            layout="@layout/layout_next_service_shimmer"/>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/gridView_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:clipChildren="true"
+                            android:clipToPadding="true"
+                            android:layoutDirection="ltr" />
+                    </LinearLayout>
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/grid_main_shimmer_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="MissingConstraints"
+                        android:layout_marginTop="8dp">
+                        <include
+                            layout="@layout/layout_grid_main_shimmer"/>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/slider_root"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="70dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="6dp"
+                        app:cardCornerRadius="6dp">
+
+<!--                        <androidx.viewpager.widget.ViewPager-->
+<!--                            android:id="@+id/sliderView"-->
+<!--                            android:minHeight="75dp"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="75dp"-->
+<!--                            app:sliderAnimationDuration="600"-->
+<!--                            app:sliderAutoCycleDirection="back_and_forth"-->
+<!--                            app:sliderAutoCycleEnabled="true"-->
+<!--                            app:sliderIndicatorAnimationDuration="600"-->
+<!--                            app:sliderIndicatorGravity="center_horizontal|bottom"-->
+<!--                            app:sliderIndicatorMargin="15dp"-->
+<!--                            app:sliderIndicatorOrientation="horizontal"-->
+<!--                            app:sliderIndicatorPadding="3dp"-->
+<!--                            app:sliderIndicatorRadius="2dp"-->
+<!--                            app:sliderIndicatorSelectedColor="#5A5A5A"-->
+<!--                            app:sliderIndicatorUnselectedColor="#FFF"-->
+<!--                            app:sliderScrollTimeInSec="1"-->
+<!--                            app:sliderStartAutoCycle="true" />-->
+
+                    </androidx.cardview.widget.CardView>
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/slider_shimmer_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="MissingConstraints"
+                        android:layout_marginTop="8dp">
+                        <include
+                            layout="@layout/layout_slider_shimmer"/>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="7dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingRight="10dp">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/ic_bg_produce" />
+
+                            <TextView
+                                android:id="@+id/txt_title_advertisetopx"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="-0.1dp"
+                                android:text="پیشنهاد ویژه"
+                                android:textColor="@color/text_dark"
+                                android:textSize="13dp" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycle_advertise_top"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/marakez_khadamat_khodro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="7dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingRight="10dp">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/ic_bg_report" />
+
+                            <TextView
+                                android:id="@+id/txt_title_category"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="-0.1dp"
+                                android:text="مراکز خدمات خودرو"
+                                android:textColor="@color/text_dark"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycle_done_service_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/job_categories_shimmer_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="MissingConstraints"
+                        android:layout_marginTop="8dp">
+                        <include
+                            layout="@layout/layout_job_categories_shimmer"/>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                    <LinearLayout
+                        android:id="@+id/behtarin_marakez"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="7dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingRight="10dp">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/ic_bg_coin" />
+
+                            <TextView
+                                android:id="@+id/txt_best_marakez"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="-0.1dp"
+                                android:text="بهترین مراکز"
+                                android:textColor="@color/text_dark"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recycle_service_centers"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                               <!-- <TextView
+                                    android:id="@+id/txt_add_more_centers"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="4dp"
+                                    android:layout_marginRight="16dp"
+                                    android:text="بیشتر"
+                                    android:layout_marginBottom="2dp"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/text_dark"
+                                    android:textSize="12dp" />
+
+                                <ImageView
+                                    android:id="@+id/iv_add_more_centers"
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_add_more"/>-->
+
+
+                    </LinearLayout>
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/best_service_centers_shimmer_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="MissingConstraints"
+                        android:layout_marginTop="8dp">
+                        <include layout="@layout/layout_best_service_centers_shimmer"/>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                    <LinearLayout
+                        android:id="@+id/majale_khodro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="7dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingRight="10dp">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/ic_bg_car_info" />
+
+                            <TextView
+                                android:id="@+id/txt_title_advertise1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="-0.1dp"
+                                android:text="مجله خودرو"
+                                android:textColor="@color/text_dark"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycle_advertise_one"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/advertise_one_shimmer_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="MissingConstraints"
+                        android:layout_marginTop="8dp">
+                        <include
+                            layout="@layout/layout_advertise_main_shimmer"/>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <LinearLayout
+                        android:id="@+id/majale_amozeshi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="7dp"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingRight="10dp">
+
+                            <ImageView
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/ic_bg_car_info" />
+
+                            <TextView
+                                android:id="@+id/txt_title_advertise2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="-0.1dp"
+                                android:text="مجله آموزشی"
+                                android:textColor="@color/text_dark"
+                                android:textSize="15dp" />
+                        </LinearLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycle_advertise_two"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="25dp" />
+                    </LinearLayout>
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/advertise_two_shimmer_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="MissingConstraints"
+                        android:layout_marginTop="8dp">
+                    <include
+                        layout="@layout/layout_advertise_main_shimmer"/>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

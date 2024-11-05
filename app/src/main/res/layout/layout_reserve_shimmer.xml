@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvCaldroid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:layoutDirection="rtl"
+    android:background="#fcfcfc"
+    android:orientation="vertical"
+    app:cardCornerRadius="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <include layout="@layout/item_reserve_time_shimmer" />
+
+        <include layout="@layout/item_reserve_time_shimmer" />
+
+        <include layout="@layout/item_reserve_time_shimmer" />
+
+        <include layout="@layout/item_reserve_time_shimmer" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <include layout="@layout/item_reserve_time_shimmer" />
+
+        <include layout="@layout/item_reserve_time_shimmer" />
+
+        <include layout="@layout/item_reserve_time_shimmer" />
+
+        <include layout="@layout/item_reserve_time_shimmer" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <include layout="@layout/item_reserve_time_shimmer" />
+
+        <include layout="@layout/item_reserve_time_shimmer" />
+
+        <include layout="@layout/item_reserve_time_shimmer" />
+
+        <include layout="@layout/item_reserve_time_shimmer" />
+    </LinearLayout>
+
+</LinearLayout>
+
+

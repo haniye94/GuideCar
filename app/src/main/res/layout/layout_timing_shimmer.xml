@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/shimmer_placeholder"
+        android:gravity="right"
+        android:padding="8dp"
+        android:textDirection="rtl" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_product_name"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@color/shimmer_placeholder"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/txt_car_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1.2"
+            android:background="@color/shimmer_placeholder"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@color/shimmer_placeholder"
+            android:gravity="left"
+            android:padding="8dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/shimmer_placeholder"
+        android:gravity="right"
+        android:padding="8dp"
+        android:textDirection="rtl" />
+
+    <include layout="@layout/item_timing_shimmer" />
+
+    <include layout="@layout/item_timing_shimmer" />
+
+    <include layout="@layout/item_timing_shimmer" />
+
+    <include layout="@layout/item_timing_shimmer" />
+
+    <include layout="@layout/item_timing_shimmer" />
+
+    <include layout="@layout/item_timing_shimmer" />
+
+</LinearLayout>

@@ -1,0 +1,4 @@
+include ':app', ':objectspinner', ':fingerprint'
+rootProject.name = "GuideCar"
+include ':persiandatepicker'
+include ':persiandatepicker'

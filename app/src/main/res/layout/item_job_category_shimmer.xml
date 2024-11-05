@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/job_category"-->
+<!--        android:layout_width="75dp"-->
+<!--        android:layout_height="75dp"-->
+<!--        android:background="@drawable/item_job_category_false"-->
+<!--        android:stateListAnimator="@null"-->
+<!--        android:text=""-->
+<!--        android:layout_marginLeft="5dp"-->
+<!--        android:layout_marginRight="5dp"-->
+<!--        android:textColor="@color/white">-->
+<!--    </androidx.appcompat.widget.AppCompatButton>-->
+
+
+    <RelativeLayout
+        android:id="@+id/rel_id_ic"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:elevation="4dp"
+        android:background="@drawable/item_job_category_false"
+        android:backgroundTint="@color/shimmer_placeholder">
+
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imagali"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_a_j_jobTitle"
+        android:layout_width="30dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/shimmer_placeholder"/>
+
+</LinearLayout>

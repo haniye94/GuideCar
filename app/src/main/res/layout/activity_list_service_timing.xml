@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:textDirection="rtl">
+
+    <include layout="@layout/layout_action_bar_pages" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/service_badi"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
+            android:textColor="#222"
+            android:textSize="10dp"
+            android:textDirection="rtl"
+            android:gravity="right"
+            android:padding="8dp"
+            android:text="نزدیکترین سرویس"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                app:cardBackgroundColor="#fff"
+                app:cardElevation="1dp"
+                android:layout_margin="2dp"
+                app:cardCornerRadius="4dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/txt_product_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:layout_weight="2"
+                                android:padding="8dp"
+                                android:text="روغن موتور"
+                                android:gravity="right"
+                                android:textColor="#444"
+                                android:textSize="12.6dp" />
+
+                            <TextView
+                                android:id="@+id/txt_car_name"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:layout_weight="1.2"
+                                android:padding="8dp"
+                                android:gravity="center"
+                                android:text="نام خودرو"
+                                android:textColor="#444"
+                                android:textSize="12.6dp" />
+
+                            <TextView
+                                android:id="@+id/txt_date"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:gravity="left"
+                                android:layout_weight="1"
+                                android:padding="8dp"
+                                android:text="1401/08/15"
+                                android:textColor="#444"
+                                android:textSize="12.6dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:textColor="#222"
+                android:textSize="10dp"
+                android:textDirection="rtl"
+                android:gravity="right"
+                android:padding="8dp"
+                android:text="زمانبندی سرویس‌‎ها"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_produce_group"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+             />
+
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/service_timing_shimmer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="8dp">
+        <include
+            layout="@layout/layout_timing_shimmer"/>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</LinearLayout>

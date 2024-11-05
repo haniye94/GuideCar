@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    android:textDirection="rtl"
+    tools:context="com.servicea.activity.ProductGroupActivity">
+
+    <include layout="@layout/layout_action_bar_pages"
+        android:id="@+id/toolbar"/>
+
+
+    <TextView
+        android:id="@+id/txt_choose_product_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:lineSpacingExtra="2.5dp"
+        android:layout_below="@id/toolbar"
+        android:text="@string/choose_product_group_reserve"
+        android:textColor="#646464"
+        android:textSize="16dp" />
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txt_choose_product_group"
+        android:background="#C9C9C9"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_produce_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/view"
+        android:background="@drawable/shap_simple_rec" />
+    <LinearLayout
+        android:id="@+id/ly_cost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_above="@id/txt_product_cost_message"
+
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        android:elevation="2dp"
+        android:background="@drawable/shape_shadow"
+        >
+
+        <TextView
+            android:id="@+id/txt_product_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:lineSpacingExtra="2.5dp"
+            android:layout_weight="1"
+            android:text="@string/product_cost"
+            android:textColor="#646464"
+            android:textSize="19dp" />
+
+        <TextView
+            android:id="@+id/txt_final_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:lineSpacingExtra="2.5dp"
+            android:text="0"
+            android:layout_weight="0.5"
+            android:textColor="#646464"
+            android:layout_marginLeft="6dp"
+            android:textSize="21dp" />
+        <TextView
+            android:id="@+id/txt_rial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:lineSpacingExtra="2.5dp"
+            android:text="ریال"
+            android:layout_marginRight="4dp"
+            android:layout_weight="0.5"
+            android:textColor="#646464"
+            android:textSize="12dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/txt_product_cost_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lineSpacingExtra="2dp"
+        android:text="@string/product_cost_message"
+        android:layout_weight="0.5"
+        android:textColor="#646464"
+        android:layout_above="@id/ly_buttons"
+        android:textSize="16dp" />
+
+    <LinearLayout
+        android:id="@+id/ly_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="6dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edt_takhfif"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/shap_edittext"
+            android:hint="کد تخفیف را وارد کنید"
+            android:paddingRight="8dp"
+            android:textColorHint="#8E8E8E"
+            android:textSize="14dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/shap_button"
+            android:stateListAnimator="@null"
+            android:text="تایید و پرداخت"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+</RelativeLayout>

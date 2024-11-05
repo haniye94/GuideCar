@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layoutDirection="rtl"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_weight="0"
+        android:background="@drawable/shap_simple_rec"
+        android:backgroundTint="@color/shimmer_placeholder"
+        android:gravity="center"
+        android:padding="7dp">
+    </LinearLayout>
+
+
+    <include layout="@layout/item_ticket_shimmer" />
+
+    <include layout="@layout/item_ticket_shimmer" />
+
+    <include layout="@layout/item_ticket_shimmer" />
+
+    <include layout="@layout/item_ticket_shimmer" />
+
+    <include layout="@layout/item_ticket_shimmer" />
+
+    <include layout="@layout/item_ticket_shimmer" />
+    <include layout="@layout/item_ticket_shimmer" />
+    <include layout="@layout/item_ticket_shimmer" />
+
+</LinearLayout>

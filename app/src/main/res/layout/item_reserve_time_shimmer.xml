@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="100dp"
+    android:layout_height="134dp"
+    android:layoutDirection="rtl"
+    android:orientation="vertical"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/item_reserve_time"
+    android:backgroundTint="@color/shimmer_placeholder"
+    android:elevation="1dp"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:gravity="center"
+    android:textDirection="rtl">
+
+</LinearLayout>

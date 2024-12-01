@@ -84,6 +84,7 @@ public class G extends Application {
     public static String LINK_BLOG_Educational = "https://autoservicea.ir/blog/";
     public static String LINK_BLOG_Car = "https://autoservicea.ir/blog/";
     public static String server = "https://api.autoservicea.ir/";
+    public static String zarinPallBaseUrl = "https://payment.zarinpal.com";
     public static String api_upload = "https://autoservicea.ir/public/image/api_upload.php?pushe=";
 
     public static String Pusher_Cluster = "ap2";
@@ -110,6 +111,8 @@ public class G extends Application {
     public static Typeface Bold, ExtraBold, Normal;
    // public static String MerchantID = "59897c8b-e2cb-4954-8102-a651ada45e38";
     public static String MerchantID = "bbdb616f-3868-4399-94f6-0dc026c98ee4";
+    public  static String authority ;
+    public  static int paymentAmount ;
 
     public static int UserType = 4;
     public static int RoleId = 4;
@@ -122,6 +125,7 @@ public class G extends Application {
     public static final String FILTER_JOB_CATEGORY_ID = "filter_job_category_id";
     public static final String KEY_FILTER_ITEM_CHANGED = "filter_changed";
     public static final String KEY_CITY_ID_CHANGED = "city_id_changed";
+    public static List<ModelCustomer> finalProductLst = null;
 
     @Override
     public void onCreate() {
@@ -555,7 +559,19 @@ public class G extends Application {
         }
         return "";
     }
+    public static String getErrorResult(Response<ResponseBody> response) {
+        if (response != null && response.errorBody() != null) {
+            String result = "";
+            try {
+                result = response.errorBody().string();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+            return result;
+        }
+        return "";
+    }
     public static String CreateSyntaxPlak(String plak) {
         String charset = plak.replaceAll("[0-9]", "");
         String numeric = plak.replaceAll("[^0-9]", "");
@@ -739,6 +755,15 @@ public class G extends Application {
         String converted = new Gson().toJson(jobCategories);
         editor.putString(FILTER_JOB_CATEGORY_ID, converted.toString());
         editor.putBoolean(KEY_FILTER_ITEM_CHANGED, true);
+        editor.apply();
+
+    }
+
+    public static void saveAuthority(String authority,int amount,Boolean verified){
+        SharedPreferences.Editor editor = context.getSharedPreferences("AUTHORITY_PREFS_NAME", MODE_PRIVATE).edit();
+        editor.putString("authority", authority);
+        editor.putInt("amount",amount );
+        editor.putBoolean("verified",verified);
         editor.apply();
 
     }

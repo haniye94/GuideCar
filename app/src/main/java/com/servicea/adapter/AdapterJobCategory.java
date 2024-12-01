@@ -43,7 +43,7 @@ public class AdapterJobCategory extends RecyclerView.Adapter<AdapterJobCategory.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(layoutInflater.inflate(R.layout.item_job_category, parent, false));
+        return new ViewHolder(layoutInflater.inflate(R.layout.item_job_category_new, parent, false));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class AdapterJobCategory extends RecyclerView.Adapter<AdapterJobCategory.
             // holder.rr.setBackgroundResource(R.drawable.item_job_category_false);
             //   holder.job_category.setTextColor(Color.parseColor("#5F5F5F"));
         }
-        holder.rr.setBackgroundResource(R.drawable.item_job_category_false);
+//        holder.rr.setBackgroundResource(R.drawable.item_job_category_false);
 
         holder.tv_a_j_jobTitle.setText(models.get(position).getTitle().toString());
         if (models.get(position).getIcon() > 0) {
@@ -84,7 +84,7 @@ public class AdapterJobCategory extends RecyclerView.Adapter<AdapterJobCategory.
             tv_a_j_jobTitle = itemView.findViewById(R.id.tv_a_j_jobTitle);
             tv_a_j_jobTitle.setTypeface(G.ExtraBold);
             imgal = itemView.findViewById(R.id.imagali);
-            rr = itemView.findViewById(R.id.rel_id_ic);
+//            rr = itemView.findViewById(R.id.rel_id_ic);
 
         }
     }

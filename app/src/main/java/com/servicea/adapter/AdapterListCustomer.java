@@ -14,8 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.servicea.activities.InformationCustomersActivity;
 import com.servicea.activities.LastServiseDoneActivity;
-import com.servicea.activities.AddCustomerActivity;
+import com.servicea.activities.AddNewCarActivity;
 import com.servicea.app.Constants;
 import com.servicea.app.DataBaseHelper;
 import com.servicea.app.G;
@@ -25,7 +26,6 @@ import com.servicea.model.dbModel.ModelCustomer;
 import java.util.List;
 
 import ir.servicea.R;
-import com.servicea.activities.InformationCustomersActivity;
 
 public class AdapterListCustomer extends RecyclerView.Adapter<AdapterListCustomer.ViewHolder> {
     Context context;
@@ -93,7 +93,7 @@ public class AdapterListCustomer extends RecyclerView.Adapter<AdapterListCustome
         int layout = R.layout.item_list_customer;
         switch (viewType) {
             case 1:
-                layout = R.layout.item_list_customer;
+                layout = R.layout.item_list_customer_azad_new;
                 break;
 
             case 2:
@@ -143,6 +143,7 @@ public class AdapterListCustomer extends RecyclerView.Adapter<AdapterListCustome
         holder.show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Intent intent = new Intent(context, CarListActivity.class);
                 Intent intent = new Intent(context, InformationCustomersActivity.class);
                 intent.putExtra("idCustomer", model.getId() + "");
 
@@ -171,7 +172,7 @@ public class AdapterListCustomer extends RecyclerView.Adapter<AdapterListCustome
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, AddCustomerActivity.class);
+                Intent intent = new Intent(context, AddNewCarActivity.class);
                 intent.putExtra("idCustomer", model.getId() + "");
                 intent.putExtra("id_car", model.getCar_id() + "");
                 intent.putExtra("firstName", model.getFirst_name());

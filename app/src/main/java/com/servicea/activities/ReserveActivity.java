@@ -25,7 +25,6 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.servicea.activity.AddServicesActivity;
 import com.servicea.activity.ListCarActivity;
-import com.servicea.activity.ReserveProductGroupActivity;
 import com.servicea.adapter.AdapterCalendar;
 import com.servicea.adapter.AdapterCalendarDay;
 import com.servicea.adapter.AdapterReserveTime;
@@ -35,7 +34,6 @@ import com.servicea.app.G;
 import com.servicea.app.PreferenceUtil;
 import com.servicea.model.ModelJobCategory;
 import com.servicea.model.ModelReserveTime;
-import com.servicea.model.dbModel.ModelProduceGroup;
 import com.servicea.model.dbModel.ReserveModel;
 import com.servicea.retrofit.Api;
 import com.servicea.retrofit.RetrofitClient;
@@ -50,12 +48,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 
 import ir.servicea.R;
+import jp.wasabeef.picasso.transformations.BlurTransformation;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -172,7 +170,7 @@ public class ReserveActivity extends AppCompatActivity {
         txt_title_choose_category = findViewById(R.id.txt_title_choose_category);
         txt_full_reserve_time_message = findViewById(R.id.txt_full_reserve_time_message);
         iv_calendar_bg = findViewById(R.id.iv_calendar_bg);
-//        Picasso.get().load(R.drawable.calendar_bg).transform(new BlurTransformation(this, 20, 1)).into(iv_calendar_bg);
+        Picasso.get().load(R.drawable.calendar_bg).transform(new BlurTransformation(this, 20, 1)).into(iv_calendar_bg);
         iv_calendar_bg.setColorFilter(R.color.black);
 
         txt_title_choose_category.setTypeface(G.Normal);

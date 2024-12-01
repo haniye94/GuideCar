@@ -15,6 +15,10 @@ public class Constants {
     public static final String reserve_request_reserve = "reserve_request_reserve";
     public static final String reserve_payment_result = "reserve_payment_result";
     public static final String reserve_service = "reserve_service";
+    public static final String reserve_service_call_back = "servicea.ir/payment/response";
+    public static final String reserve_service_accept = "application/json";
+    public static final String reserve_service_content = "application/json";
+    public static final String reserve_service_payment_base_url = "https://payment.zarinpal.com/pg/StartPay/";
     public static final String reserve_product_group = "reserve_product_group";
     public static final String reserve_model = "reserve_model";
     public static final String IS_RESERVED = "is_reserved";

@@ -37,9 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="17dp"
+            android:layout_marginTop="2dp"
             android:text="13"
-            android:textColor="@color/gray"
-            android:textSize="15dp" />
+            android:textColor="@color/old_gray"
+            android:textSize="@dimen/very_big_font" />
 
         <View
             android:id="@+id/divid2"
@@ -53,8 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ق"
-            android:textColor="@color/gray"
-            android:textSize="15dp" />
+            android:layout_marginTop="2dp"
+            android:textColor="@color/old_gray"
+            android:textSize="@dimen/very_big_font" />
 
         <View
             android:id="@+id/divid3"
@@ -68,8 +70,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="412"
-            android:textColor="@color/gray"
-            android:textSize="15dp" />
+            android:layout_marginTop="2dp"
+            android:textColor="@color/old_gray"
+            android:textSize="@dimen/very_big_font" />
 
         <View
             android:id="@+id/divid4"
@@ -83,11 +86,11 @@
             android:id="@+id/txt_plak_customer4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="4dp"
             android:layout_marginRight="6dp"
             android:text="18"
-            android:textColor="@color/gray"
-            android:textSize="15dp" />
+            android:textColor="@color/old_gray"
+            android:textSize="@dimen/very_big_font" />
     </LinearLayout>
 
 </RelativeLayout>

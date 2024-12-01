@@ -63,6 +63,7 @@ import ir.servicea.R;
 
 import com.servicea.retrofit.Api;
 import com.servicea.retrofit.RetrofitClient;
+
 import kr.ry4nkim.objectspinner.ObjectSpinner;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -72,7 +73,7 @@ import retrofit2.Response;
 
 import com.servicea.app.Constants.*;
 
-public class AddCustomerActivity extends AppCompatActivity {
+public class AddNewCarActivity extends AppCompatActivity {
     private EditText edt1, edt2, edt3, edt4, edt5, edt6, edt7, edt8;
     private Button btn_save, btn_cancle;
     private TextView txt_tile_action_bar;
@@ -101,9 +102,9 @@ public class AddCustomerActivity extends AppCompatActivity {
     private String[] cars_company = {};
     private String[] cars_company_id = {};
     private boolean tryfirst = false;
-    private ObjectSpinner spin_type_car, fuel_typesx, car_modelsx,car_model_x;
+    private ObjectSpinner spin_type_car, fuel_typesx, car_modelsx, car_model_x;
 
-    private ViewGroup ly_plk_general,ly_plk_malolin,ly_plk_azad_new,ly_plk_azad_old, ly_pelak_type;
+    private ViewGroup ly_plk_general, ly_plk_malolin, ly_plk_azad_new, ly_plk_azad_old, ly_pelak_type;
 
     PLAK_TYPE plak_type = PLAK_TYPE.PLAK_GENERAL;
     ViewGroup plak_layout = ly_plk_general;
@@ -121,6 +122,7 @@ public class AddCustomerActivity extends AppCompatActivity {
     private boolean isVisiblePlakLayout = false;
 
     private Spinner spinner_plk_azad_old;
+
     @Override
     public void onResume() {
         super.onResume();
@@ -132,7 +134,7 @@ public class AddCustomerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_customer);
+        setContentView(R.layout.activity_add_new_car);
         G.Activity = this;
         G.context = this;
         boolean status = G.preference.getBoolean("ServiceCenterStatus", false);
@@ -145,11 +147,11 @@ public class AddCustomerActivity extends AppCompatActivity {
         mDBHelper = new DataBaseHelper(this);
         preferenceUtil = new PreferenceUtil(this);
         intentThatOpenAddCustomer = getIntent();
-        if (intentThatOpenAddCustomer.hasExtra(Constants.CAR_PLATE_TYPE)){
+        if (intentThatOpenAddCustomer.hasExtra(Constants.CAR_PLATE_TYPE)) {
             plak_type = (PLAK_TYPE) intentThatOpenAddCustomer.getSerializableExtra(Constants.CAR_PLATE_TYPE);
-            plakString =  intentThatOpenAddCustomer.getStringExtra("plak");
-            selectedCityForPlkIndex =  intentThatOpenAddCustomer.getIntExtra(Constants.PLAK_AZAD_OLD_CITY_INDEX, 0);
-            Log.d("PLAK", "setPlakForEdit: selectedCityForPlkIndex1:" + selectedCityForPlkIndex );
+            plakString = intentThatOpenAddCustomer.getStringExtra("plak");
+            selectedCityForPlkIndex = intentThatOpenAddCustomer.getIntExtra(Constants.PLAK_AZAD_OLD_CITY_INDEX, 0);
+            Log.d("PLAK", "setPlakForEdit: selectedCityForPlkIndex1:" + selectedCityForPlkIndex);
 
         }
         FindView();
@@ -176,7 +178,7 @@ public class AddCustomerActivity extends AppCompatActivity {
 
         String plak = edt1.getText().toString() + edt2.getText().toString() + edt3.getText().toString() + edt4.getText().toString() + edt5.getText().toString() + edt6.getText().toString() + edt7.getText().toString() + edt8.getText().toString();
 
-        if(true){
+        if (true) {
             checkExitCar(plak);
         }
         onClickPlak();
@@ -216,14 +218,14 @@ public class AddCustomerActivity extends AppCompatActivity {
             }
             txt_date_customer.setText(date.replace("-", "/"));
             String sex = getIntent().getExtras().getString("gender");
-            G.Log("Gender "+sex);
-            if (sex.contains("آقا")||sex.contains("مرد")||sex.contains("M") || sex.contains("m")) {
+            G.Log("Gender " + sex);
+            if (sex.contains("آقا") || sex.contains("مرد") || sex.contains("M") || sex.contains("m")) {
                 spin_gender.post(new Runnable() {
                     public void run() {
                         spin_gender.setSelection(1);
                     }
                 });
-            } else if (sex.equals("خانم")||sex.equals("زن")||sex.contains("F") || sex.contains("f")) {
+            } else if (sex.equals("خانم") || sex.equals("زن") || sex.contains("F") || sex.contains("f")) {
                 spin_gender.post(new Runnable() {
                     public void run() {
                         spin_gender.setSelection(2);
@@ -338,7 +340,7 @@ public class AddCustomerActivity extends AppCompatActivity {
         listgen.add("مرد");
         listgen.add("زن");
 
-        SpinnerAdapter spinnerAdapter = new ArrayAdapter(AddCustomerActivity.this, R.layout.item_spiner, listgen);
+        SpinnerAdapter spinnerAdapter = new ArrayAdapter(AddNewCarActivity.this, R.layout.item_spiner, listgen);
         ((ArrayAdapter) spinnerAdapter).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin_gender.setAdapter(spinnerAdapter);
 
@@ -348,7 +350,7 @@ public class AddCustomerActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 gender = listgen.get(i);
                 if (tryfirst) {
-                    if(txt_date_customer.getText().toString().contains("تاریخ")) {
+                    if (txt_date_customer.getText().toString().contains("تاریخ")) {
                         txt_date_customer.performClick();
 
                         G.toast("تاریخ تولد را وارد کنید");
@@ -400,7 +402,7 @@ public class AddCustomerActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_NEXT) {
 
-                   edt_first_name.requestFocus();
+                    edt_first_name.requestFocus();
 
                     return true;
                 }
@@ -449,7 +451,7 @@ public class AddCustomerActivity extends AppCompatActivity {
         }
     }
 
-    public int car_name_id = 0, car_tip_id = 0, car_model_id = 0, fuel_type_id = 1,car_company_id=0;
+    public int car_name_id = 0, car_tip_id = 0, car_model_id = 0, fuel_type_id = 1, car_company_id = 0;
     public String car_name_selected = "";
     public String car_company_selected = "";
     public String car_tip_selected = "";
@@ -483,6 +485,7 @@ public class AddCustomerActivity extends AppCompatActivity {
                             SliderItem sliderItem = new SliderItem();
                             int id = obj.getInt("id");
                             String title = obj.getString("name");
+                            String url = obj.getString("image");
 //                            if (obj.has("car_company_id")) {
 //                                JSONObject car_company = obj.getJSONObject("car_company_id");
 //                                if (car_company.has("name")) {
@@ -490,6 +493,7 @@ public class AddCustomerActivity extends AppCompatActivity {
 //                                }
 //                            }
                             sliderItem.setDescription(title);
+                            sliderItem.setImageUrl(url);
                             sliderItemList.add(sliderItem);
                             cars_name[i] = title;
                             cars_name_id[i] = id + "";
@@ -579,7 +583,7 @@ public class AddCustomerActivity extends AppCompatActivity {
                             cars_name_id[i] = id + "";
 
                             if (id == car_tip_id) {
-                                positionSelected = i+1;
+                                positionSelected = i + 1;
                                 car_tip_selected = title;
 
                             }
@@ -874,16 +878,18 @@ public class AddCustomerActivity extends AppCompatActivity {
     }
 
     public void onclickAlamrs(View v) {
-        startActivity(new Intent(AddCustomerActivity.this, AlarmsActivity.class));
+        startActivity(new Intent(AddNewCarActivity.this, AlarmsActivity.class));
     }
-public String CarId = "";
+
+    public String CarId = "";
+
     public void addCustomer(String updateCustomer, String car_id, String name, String lastName, String phone, String sex, String b_date, String car_tag, String car_name, String car_type, String fuel_type) {
         car_tag = G.CreateSyntaxPlak(car_tag);
         G.loading(this);
         String created_at = G.converToEn(DateFormat.format("yyyy-MM-dd HH:mm:ss", new Date()).toString());
         JSONObject car = new JSONObject();
         try {
-            car.put("service_center_id",  JSONObject.NULL);
+            car.put("service_center_id", JSONObject.NULL);
             car.put("user_id", PreferenceUtil.getUser_id());
             car.put("car_name_id", car_name_id);
             if (car_tip_id > 0) {
@@ -903,10 +909,10 @@ public String CarId = "";
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if(car_tag.length() >= 8){
+        if (car_tag.length() >= 8) {
             requestCar(PreferenceUtil.getUser_id(), car_id, b_date, car, updateCustomer);
 
-        } else{
+        } else {
             Log.d(Constants.ADD_CUSTOMER_ACTIVITY_TAG, "plak: " + car_tag);
             Log.d(Constants.ADD_CUSTOMER_ACTIVITY_TAG, "plak length is less than 8: " + car_tag);
         }
@@ -1045,14 +1051,14 @@ public String CarId = "";
                     G.Log(result);
                     if (result.length() > 0 && result.length() < 15) {
                         G.toast("اطلاعات با موفقیت ثبت شد");
-                        G.preference.edit().putBoolean("changeCar",true).apply();
+                        G.preference.edit().putBoolean("changeCar", true).apply();
 //                        G.sendSMSProv(edt_phone_number.getText().toString(), G.PROV_WELLCOME);
                         G.stop_loading();
                         String car_id = result.replace(" ", "");
 //                        if (!finalUpdate) {
 //                            showBottomSheetDialog(b_date, user_id, car_id);
 //                        } else {
-                            finish();
+                        finish();
 //                        }
 
 
@@ -1076,8 +1082,8 @@ public String CarId = "";
 
     public void showBottomSheetDialog(String dateBirthday, String user_id, String car_id) {
 
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(AddCustomerActivity.this, R.style.BottomSheetDialogTheme);
-        View bottomSheetView = LayoutInflater.from(AddCustomerActivity.this)
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(AddNewCarActivity.this, R.style.BottomSheetDialogTheme);
+        View bottomSheetView = LayoutInflater.from(AddNewCarActivity.this)
                 .inflate(R.layout.layout_button_sheet_main, (LinearLayout) findViewById(R.id.ly_bottom_sheet_lang));
         bottomSheetDialog.setCancelable(false);
 
@@ -1109,7 +1115,7 @@ public String CarId = "";
         txt_plak_customer3.setText(edt4.getText().toString() + edt5.getText().toString() + edt6.getText().toString() + "");
         txt_plak_customer4.setText(edt7.getText().toString() + edt8.getText().toString() + "");
         txt_name_family.setText(edt_first_name.getText().toString() + " " + edt_last_name.getText().toString());
-        txt_car.setText(car_company_selected+" - "+car_name_selected);
+        txt_car.setText(car_company_selected + " - " + car_name_selected);
         txt_phone.setText(edt_phone_number.getText().toString());
         btn_cancle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1135,13 +1141,13 @@ public String CarId = "";
                         }
                     }
                 }, 0);
-                Intent intent = new Intent(AddCustomerActivity.this, AddServicesActivity.class);
+                Intent intent = new Intent(AddNewCarActivity.this, AddServicesActivity.class);
                 intent.putExtra("idCustomer", user_id + "");
                 intent.putExtra("id_car", car_id + "");
                 intent.putExtra("firstName", firstName);
                 intent.putExtra("lastName", lastName);
                 intent.putExtra("phone", phone);
-                intent.putExtra("nameCar", car_company_selected+" - "+car_name_selected+" - "+car_tip_selected);
+                intent.putExtra("nameCar", car_company_selected + " - " + car_name_selected + " - " + car_tip_selected);
                 intent.putExtra("id_customer", user_id + "");
                 intent.putExtra("plak", plak);
                 intent.putExtra(Constants.CAR_PLATE_TYPE, plak_type.id);
@@ -1206,7 +1212,7 @@ public String CarId = "";
                         break;
                 }
                 fuel_type_id = Integer.parseInt(typeFuel);
-                if (car_name_id > 0 && car_company_id > 0 && car_model_id > 0 && fuel_type_id > 0&& !TextUtils.isEmpty(plak)) {
+                if (car_name_id > 0 && car_company_id > 0 && car_model_id > 0 && fuel_type_id > 0 && !TextUtils.isEmpty(plak)) {
                     persianCalendar = new PersianCalendar();
                     String date_save_customer = persianCalendar.getPersianYear() + "/" + persianCalendar.getPersianMonth() + "/" + persianCalendar.getPersianDay();
                     if (dateBirthday.contains("-") && dateBirthday.length() >= 7) {
@@ -1224,8 +1230,8 @@ public String CarId = "";
                                 cust_id = find_user + "";
                             }
                         }
-                        if(car_id.length()<=0 && CarId.length()>0){
-                            car_id=CarId;
+                        if (car_id.length() <= 0 && CarId.length() > 0) {
+                            car_id = CarId;
                         }
                         addCustomer(cust_id + "", car_id + "", firstName, lastName, phone, gender, dateBirthday, plak, "nameCar", type_car, typeFuel);
 
@@ -1240,16 +1246,16 @@ public String CarId = "";
                 } else if (plak.equals("")) {
                     edt1.setError("پلاک را به درستی وارد کنید");
 
-                }else if (car_company_id <= 0) {
+                } else if (car_company_id <= 0) {
                     G.toast("کمپانی خودرو را وارد نکرده اید!");
 
-                }else if (car_name_id <= 0) {
+                } else if (car_name_id <= 0) {
                     G.toast("نام خودرو را وارد نکرده اید!");
 
-                }else if (car_model_id <= 0) {
+                } else if (car_model_id <= 0) {
                     G.toast("سال تولید خودرو را وارد نکرده اید!");
 
-                }  else if (fuel_type_id <= 0) {
+                } else if (fuel_type_id <= 0) {
                     G.toast("نوع سوخت را وارد نکرده اید!");
 
                 }
@@ -1339,23 +1345,23 @@ public String CarId = "";
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                onBackPressed();
             }
         });
 
-        tv_plk_type_menu.setOnClickListener(v->{
+        tv_plk_type_menu.setOnClickListener(v -> {
             isVisiblePlakLayout = !isVisiblePlakLayout;
             showPlakTypeMenu(isVisiblePlakLayout);
         });
 
 
-        tv_plk_type_general.setOnClickListener(v->{
+        tv_plk_type_general.setOnClickListener(v -> {
             onClickPlakType(R.id.tv_plk_type_general);
         });
-        tv_plk_type_azad_new.setOnClickListener(v->{
+        tv_plk_type_azad_new.setOnClickListener(v -> {
             onClickPlakType(R.id.tv_plk_type_azad_new);
         });
-        tv_plk_type_azad_old.setOnClickListener(v->{
+        tv_plk_type_azad_old.setOnClickListener(v -> {
             onClickPlakType(R.id.tv_plk_type_azad_old);
         });
 
@@ -1408,7 +1414,7 @@ public String CarId = "";
         PersianCalendar initDate = new PersianCalendar();
         initDate.setPersianDate(1370, 1, 1);
 
-        mDatePicker = new PersianDatePickerDialog(AddCustomerActivity.this)
+        mDatePicker = new PersianDatePickerDialog(AddNewCarActivity.this)
                 .setPositiveButtonString("تأیید")
                 .setNegativeButton("بستن")
                 .setTodayButton("امروز")
@@ -1444,6 +1450,9 @@ public String CarId = "";
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Intent intent = new Intent(AddNewCarActivity.this, CarListActivity.class);
+        startActivity(intent);
+        finish();
         preferenceUtil.deleteCashPhone();
         preferenceUtil.deleteCashPlak();
     }
@@ -1461,6 +1470,7 @@ public String CarId = "";
     }
 
     public int find_user = 0;
+
     public void checkExitCar(String tag) {
         tag = G.CreateSyntaxPlak(tag);
         Api api = RetrofitClient.createService(Api.class, G.api_username, G.api_password);
@@ -1476,7 +1486,7 @@ public String CarId = "";
                     try {
                         car = array.getJSONObject(0);
                         CarId = car.getString("id");
-                        if(CarId.length()>0){
+                        if (CarId.length() > 0) {
                             G.Log("یافت شد");
                             G.Log(CarId);
                         }
@@ -1495,6 +1505,7 @@ public String CarId = "";
             }
         });
     }
+
     public void checkExitUser(String phone) {//09398232464    49t578  41
 
         Api api = RetrofitClient.createService(Api.class, G.api_username, G.api_password);
@@ -1526,8 +1537,8 @@ public String CarId = "";
                             txt_date_customer.setText(G.toShamsi(record.getString("birthdate")) + "");
                             String sex = record.getString("sex") + "";
                             tryfirst = false;
-                            G.Log("Gender "+sex);
-                            if (sex.contains("آقا")||sex.contains("مرد")||sex.contains("M") || sex.contains("m")) {
+                            G.Log("Gender " + sex);
+                            if (sex.contains("آقا") || sex.contains("مرد") || sex.contains("M") || sex.contains("m")) {
                                 spin_gender.post(new Runnable() {
                                     public void run() {
                                         spin_gender.setSelection(1);
@@ -1572,19 +1583,19 @@ public String CarId = "";
         ly_pelak_type.setVisibility((isVisible ? View.VISIBLE : View.GONE));
     }
 
-    private void onClickPlakType(int id){
-        switch (id){
+    private void onClickPlakType(int id) {
+        switch (id) {
             case R.id.tv_plk_type_general: {
                 plak_type = PLAK_TYPE.PLAK_GENERAL;
                 plak_layout = ly_plk_general;
                 break;
             }
-            case R.id.tv_plk_type_azad_old:{
+            case R.id.tv_plk_type_azad_old: {
                 plak_type = PLAK_TYPE.PLAK_AZAD_OLD;
                 plak_layout = ly_plk_azad_old;
                 break;
             }
-            case R.id.tv_plk_type_azad_new:{
+            case R.id.tv_plk_type_azad_new: {
                 plak_type = PLAK_TYPE.PLAK_AZAD_NEW;
                 plak_layout = ly_plk_azad_new;
                 break;
@@ -1596,7 +1607,7 @@ public String CarId = "";
     }
 
     private void changePlakLayout() {
-        switch (plak_type){
+        switch (plak_type) {
             case PLAK_GENERAL:
             case PLAK_TAXI:
             case PLAK_EDARI:
@@ -1655,20 +1666,20 @@ public String CarId = "";
         Log.d("Maaain", "PlakListener: " + plak_layout.toString());
         StringBuilder plak = new StringBuilder("");
         String endPlak = "";
-        for (int i = 0; i < editTextsInPlakLayout.size() ; i++) {
+        for (int i = 0; i < editTextsInPlakLayout.size(); i++) {
             EditText currentEditText = editTextsInPlakLayout.get(i);
             Log.d(Constants.ADD_CUSTOMER_ACTIVITY_TAG, "getPlakValue:i: " + i);
             Log.d(Constants.ADD_CUSTOMER_ACTIVITY_TAG, "getPlakValue:plak: " + currentEditText.getText().toString());
 
-            if(i == 2 && (plak_type!= PLAK_TYPE.PLAK_AZAD_NEW && plak_type!= PLAK_TYPE.PLAK_AZAD_OLD)){
+            if (i == 2 && (plak_type != PLAK_TYPE.PLAK_AZAD_NEW && plak_type != PLAK_TYPE.PLAK_AZAD_OLD)) {
                 Log.d(Constants.ADD_CUSTOMER_ACTIVITY_TAG, "getPlakValue:step: " + 1);
                 endPlak = currentEditText.getText().toString();
-            }else if ((plak_type == PLAK_TYPE.PLAK_AZAD_NEW || plak_type == PLAK_TYPE.PLAK_AZAD_OLD) && i == 2) {
+            } else if ((plak_type == PLAK_TYPE.PLAK_AZAD_NEW || plak_type == PLAK_TYPE.PLAK_AZAD_OLD) && i == 2) {
                 Log.d(Constants.ADD_CUSTOMER_ACTIVITY_TAG, "getPlakValue:step: " + 3);
                 plak.append(currentEditText.getText().toString());
             } else if ((plak_type == PLAK_TYPE.PLAK_AZAD_NEW || plak_type == PLAK_TYPE.PLAK_AZAD_OLD) && i == editTextsInPlakLayout.size()) {
-                 break;
-            } else{
+                break;
+            } else {
                 Log.d(Constants.ADD_CUSTOMER_ACTIVITY_TAG, "getPlakValue:step: " + 2);
                 plak.append(currentEditText.getText().toString());
             }
@@ -1679,17 +1690,17 @@ public String CarId = "";
             setPlakTypeBasedEndPlak(endPlak);
         }
         //String plak = edt1.getText().toString() + edt2.getText().toString() + edt4.getText().toString() + edt5.getText().toString() + edt6.getText().toString() + edt7.getText().toString() + edt8.getText().toString() + edt3.getText().toString();
-        if(plak_type == PLAK_TYPE.PLAK_AZAD_OLD ){
+        if (plak_type == PLAK_TYPE.PLAK_AZAD_OLD) {
             plak.append(selectedCityForPlk);
         }
         return plak.toString();
     }
 
     private void setPlakTypeBasedEndPlak(String endPlak) {
-        if(endPlak.equals("ع") || endPlak.equals("ت")) plak_type = PLAK_TYPE.PLAK_TAXI;
-        else if (endPlak.equals("ا"))  plak_type = PLAK_TYPE.PLAK_EDARI;
-        else if (endPlak.equals("پ") || endPlak.equals("ث"))  plak_type = PLAK_TYPE.PLAK_ENTEZAMI;
-        else if (endPlak.equals("#"))  plak_type = PLAK_TYPE.PLAK_MAOLOIN;
+        if (endPlak.equals("ع") || endPlak.equals("ت")) plak_type = PLAK_TYPE.PLAK_TAXI;
+        else if (endPlak.equals("ا")) plak_type = PLAK_TYPE.PLAK_EDARI;
+        else if (endPlak.equals("پ") || endPlak.equals("ث")) plak_type = PLAK_TYPE.PLAK_ENTEZAMI;
+        else if (endPlak.equals("#")) plak_type = PLAK_TYPE.PLAK_MAOLOIN;
         else plak_type = PLAK_TYPE.PLAK_GENERAL;
         Log.d(Constants.ADD_CUSTOMER_ACTIVITY_TAG, "getPlakValue:plak_type: " + plak_type);
     }
@@ -1700,7 +1711,7 @@ public String CarId = "";
         Log.d("Maaain", "PlakListener: " + plak_layout.toString());
         String endPlak = "";
         int endPlakIndex = 0;
-        switch (plak_type){
+        switch (plak_type) {
             case PLAK_GENERAL:
             case PLAK_TAXI:
             case PLAK_EDARI:
@@ -1721,58 +1732,55 @@ public String CarId = "";
 
         for (int i = 0; i <= editTextsInPlakLayout.size() - 1; i++) {
             EditText currentEditText = editTextsInPlakLayout.get(i);
-            Log.d("PLAK1", "setPlakForEdit: **"+ plak.substring(i, i+1));
-            Log.d("PLAK1", "setPlakForEdit: i:"+ i);
+            Log.d("PLAK1", "setPlakForEdit: **" + plak.substring(i, i + 1));
+            Log.d("PLAK1", "setPlakForEdit: i:" + i);
 
-            if(i < endPlakIndex){
+            if (i < endPlakIndex) {
                 Log.d("PLAK1", "step1: **");
 
-                if((plak_type!= PLAK_TYPE.PLAK_AZAD_NEW && plak_type!= PLAK_TYPE.PLAK_AZAD_OLD)){
+                if ((plak_type != PLAK_TYPE.PLAK_AZAD_NEW && plak_type != PLAK_TYPE.PLAK_AZAD_OLD)) {
                     Log.d("PLAK1", "step2: **");
 
                     if (i == 2) {
                         Log.d("PLAK1", "step3: **");
-                        currentEditText.setText(plak.substring(plak.length()-1));
-                    }
-                    else if (i >= 3) {
+                        currentEditText.setText(plak.substring(plak.length() - 1));
+                    } else if (i >= 3) {
                         Log.d("PLAK1", "step4: **");
-                        currentEditText.setText(plak.substring(i-1));
-                    }else{
+                        currentEditText.setText(plak.substring(i - 1));
+                    } else {
                         Log.d("PLAK1", "step5: **");
                         currentEditText.setText(plak.substring(i));
                     }
-                }else{
+                } else {
                     Log.d("PLAK1", "step6: **");
-                    if(i != plak.length()-1) {
+                    if (i != plak.length() - 1) {
                         Log.d("PLAK1", "step7: **");
-                        Log.d("PLAK1", "setPlakForEdit: **"+ plak.substring(i, i+1));
-                        currentEditText.setText(plak.substring(i, i+1));
-                    }
-                    else{
+                        Log.d("PLAK1", "setPlakForEdit: **" + plak.substring(i, i + 1));
+                        currentEditText.setText(plak.substring(i, i + 1));
+                    } else {
                         Log.d("PLAK1", "step8: **");
-                        Log.d("PLAK1", "setPlakForEdit: **"+plak.substring(i));
+                        Log.d("PLAK1", "setPlakForEdit: **" + plak.substring(i));
                         currentEditText.setText(plak.substring(i));
                     }
                 }
-            }else{
+            } else {
                 Log.d("PLAK1", "step9: **");
-                if( plak_type == PLAK_TYPE.PLAK_AZAD_NEW){
+                if (plak_type == PLAK_TYPE.PLAK_AZAD_NEW) {
                     Log.d("PLAK1", "step10: **");
-                    Log.d("PLAK", "setPlakForEdit: **" + plak.substring(i, plak.length()-1) );
+                    Log.d("PLAK", "setPlakForEdit: **" + plak.substring(i, plak.length() - 1));
                     currentEditText.setText(plak.substring(i, plak.length()));
-                }
-                else currentEditText.setText(plak.substring(i-1));
+                } else currentEditText.setText(plak.substring(i - 1));
             }
         }
-        if(plak_type == PLAK_TYPE.PLAK_AZAD_OLD ){
-            Log.d("PLAK", "setPlakForEdit: selectedCityForPlkIndex:" + selectedCityForPlkIndex );
+        if (plak_type == PLAK_TYPE.PLAK_AZAD_OLD) {
+            Log.d("PLAK", "setPlakForEdit: selectedCityForPlkIndex:" + selectedCityForPlkIndex);
             spinner_plk_azad_old.setSelection(selectedCityForPlkIndex);
         }
     }
 
-    private void setPlakAzadOldSpinner(){
+    private void setPlakAzadOldSpinner() {
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AddCustomerActivity.this,
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AddNewCarActivity.this,
                 R.array.plk_azad_old_cities, R.layout.plak_spinner_item);
 
         adapter.setDropDownViewResource(R.layout.plak_spinner_item);

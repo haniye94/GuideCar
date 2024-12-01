@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:textDirection="rtl"
     android:theme="@style/Theme.AppCompat"
-    tools:context="com.servicea.ir.servicea.MainActivity">
+    tools:context="com.servicea.activities.MainActivity">
 
 
     <com.servicea.app.CustomViewPager
@@ -31,14 +31,11 @@
         android:layout_height="60dp"
         android:layoutDirection="ltr"
         android:background="@color/white"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:tabGravity="center"
         app:tabMode="fixed"
-
-
         app:tabTextAppearance="@style/customFontStyle">
 
     </com.google.android.material.tabs.TabLayout>

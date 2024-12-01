@@ -140,7 +140,7 @@ public class buyCreditActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (finalCost > 0) {
                     G.toast("لطفأ صبر کنید...");
-                    requestPayment(finalCost);
+//                    requestPayment(finalCost);
                 }
             }
         });
@@ -184,7 +184,7 @@ public class buyCreditActivity extends AppCompatActivity {
         select200.setVisibility(View.GONE);
     }
 
-    private void requestPayment(int amount) {
+//    private void requestPayment(int amount) {
 //        try {
 //            amount = 1000;
 //            G.preference.edit().putInt("amount_charge", amount).apply();
@@ -214,7 +214,7 @@ public class buyCreditActivity extends AppCompatActivity {
 //        } catch (Exception e) {
 //            G.toast("مشکل در درگاه پرداخت!!");
 //        }
-    }
+//    }
 
 
     public void ListSmsPackage() {

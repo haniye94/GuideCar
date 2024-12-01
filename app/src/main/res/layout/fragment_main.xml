@@ -20,7 +20,7 @@
         android:textDirection="rtl">
 
         <RelativeLayout
-            android:id="@+id/alarms"
+            android:id="@+id/ic_notif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
@@ -76,7 +76,7 @@
             android:cropToPadding="true"
             android:padding="15dp"
             android:scaleType="centerInside"
-            android:src="@drawable/titlelogo" />
+            android:src="@drawable/servicea" />
 
     </LinearLayout>
 
@@ -97,7 +97,7 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingRight="10dp"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
                     android:layout_width="12dp"
@@ -431,7 +431,7 @@
 
                                         <LinearLayout
                                             android:layout_width="match_parent"
-                                            android:visibility="gone"
+                                            android:visibility="visible"
                                             android:layout_height="wrap_content"
                                             android:id="@+id/layout_item_next_service"
                                             android:orientation="horizontal">
@@ -503,14 +503,14 @@
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
                     <LinearLayout
-                        android:layout_marginTop="15dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
                         android:gravity="center">
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/gridView_main"
+                            android:id="@+id/rv_car_service_center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -529,18 +529,18 @@
                             layout="@layout/layout_grid_main_shimmer"/>
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/slider_root"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="70dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="6dp"
-                        android:layout_marginTop="6dp"
-                        app:cardCornerRadius="6dp">
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:id="@+id/slider_root"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:minHeight="70dp"-->
+<!--                        android:layout_marginLeft="15dp"-->
+<!--                        android:layout_marginRight="15dp"-->
+<!--                        android:layout_marginBottom="6dp"-->
+<!--                        android:layout_marginTop="6dp"-->
+<!--                        app:cardCornerRadius="6dp">-->
 
-<!--                        <androidx.viewpager.widget.ViewPager-->
+<!--                        <com.smarteist.autoimageslider.SliderView-->
 <!--                            android:id="@+id/sliderView"-->
 <!--                            android:minHeight="75dp"-->
 <!--                            android:layout_width="match_parent"-->
@@ -558,17 +558,17 @@
 <!--                            app:sliderIndicatorUnselectedColor="#FFF"-->
 <!--                            app:sliderScrollTimeInSec="1"-->
 <!--                            app:sliderStartAutoCycle="true" />-->
-
-                    </androidx.cardview.widget.CardView>
-                    <com.facebook.shimmer.ShimmerFrameLayout
-                        android:id="@+id/slider_shimmer_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:ignore="MissingConstraints"
-                        android:layout_marginTop="8dp">
-                        <include
-                            layout="@layout/layout_slider_shimmer"/>
-                    </com.facebook.shimmer.ShimmerFrameLayout>
+<!---->
+<!--                    </androidx.cardview.widget.CardView>-->
+<!--                    <com.facebook.shimmer.ShimmerFrameLayout-->
+<!--                        android:id="@+id/slider_shimmer_layout"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        tools:ignore="MissingConstraints"-->
+<!--                        android:layout_marginTop="8dp">-->
+<!--                        <include-->
+<!--                            layout="@layout/layout_slider_shimmer"/>-->
+<!--                    </com.facebook.shimmer.ShimmerFrameLayout>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"

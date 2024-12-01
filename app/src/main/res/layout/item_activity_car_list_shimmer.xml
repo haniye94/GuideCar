@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_notif"
+        android:layout_width="@dimen/ic_back_notif_width"
+        android:layout_height="@dimen/ic_back_notif_height"
+        android:layout_margin="@dimen/ic_back_notif_margin"
+        android:background="@color/shimmer_placeholder"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_tile_action_bar"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="@dimen/page_title_margin_top"
+
+        android:background="@color/shimmer_placeholder"
+        android:textColor="@color/black"
+        android:textSize="@dimen/big_font"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/img_back"
+        app:layout_constraintLeft_toRightOf="@id/img_back"
+        app:layout_constraintRight_toLeftOf="@id/ic_notif"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_back"
+        android:layout_width="@dimen/ic_back_notif_width"
+        android:layout_height="@dimen/ic_back_notif_height"
+        android:layout_margin="@dimen/ic_back_notif_margin"
+        android:background="@color/shimmer_placeholder"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_car_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_tile_action_bar"
+        app:layout_constraintVertical_bias="0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_car_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/next"
+                android:layout_width="@dimen/ic_next_before_width"
+                android:layout_height="@dimen/ic_next_before_height"
+                android:src="@drawable/next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="@dimen/view_pager_width"
+                android:layout_height="@dimen/view_pager_height"
+                android:background="@color/shimmer_placeholder"
+                app:layout_constraintLeft_toRightOf="@id/before"
+                app:layout_constraintRight_toLeftOf="@id/next"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/indicatorLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewPager" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/before"
+                android:layout_width="@dimen/ic_next_before_width"
+                android:layout_height="@dimen/ic_next_before_height"
+                android:src="@drawable/before"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_car_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/const_car_iv">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_car_kilometer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_view_margin"
+                android:background="@drawable/bg_border"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_car_kilometer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_kilometer"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:background="@color/shimmer_placeholder"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/red_text"
+                        android:textSize="@dimen/very_big_font"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_title_kilometer"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/shimmer_placeholder"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/very_big_font"
+                        android:textStyle="bold" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_blue_circle"
+                android:layout_width="@dimen/color_circle_width_height"
+                android:layout_height="@dimen/color_circle_width_height"
+                android:layout_marginTop="@dimen/tv_ic_title_top_margin"
+                android:layout_marginEnd="@dimen/card_view_margin"
+                android:background="@color/shimmer_placeholder"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv_car_kilometer" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title_next_service"
+                android:layout_width="150dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="@dimen/tv_ic_title_top_margin"
+                android:layout_marginEnd="@dimen/tv_title_to_circle_right_margin"
+                android:background="@color/shimmer_placeholder"
+                android:textColor="@color/text_gray_color"
+                android:textSize="@dimen/normal_font"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/ic_blue_circle"
+                app:layout_constraintRight_toLeftOf="@id/ic_blue_circle"
+                app:layout_constraintTop_toBottomOf="@id/cv_car_kilometer" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_next_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/card_view_margin"
+                android:layout_marginTop="@dimen/card_view_next_service_top_margin"
+                android:layout_marginRight="@dimen/card_view_margin"
+                android:background="@drawable/bg_border"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_next_service">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_next_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/next_service_padding">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/shimmer_placeholder"
+                        android:gravity="start"
+                        android:textColor="@color/text_dark_gray_color"
+                        android:textSize="@dimen/normal_font" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_car"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:background="@color/shimmer_placeholder"
+                        android:gravity="center"
+                        android:textColor="@color/text_dark_gray_color"
+                        android:textSize="@dimen/normal_font" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_product_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:background="@color/shimmer_placeholder"
+                        android:gravity="end"
+                        android:textColor="@color/text_dark_gray_color"
+                        android:textSize="@dimen/normal_font" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_car_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/card_view_margin"
+                android:layout_marginRight="@dimen/card_view_margin"
+                android:layout_marginBottom="@dimen/card_view_car_detail_bottom_margin"
+                android:background="@drawable/bg_border"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv_next_service">
+
+                <LinearLayout
+                    android:id="@+id/const_car_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:orientation="vertical"
+                    android:padding="@dimen/next_service_padding">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/ll_car_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_title_car_name"
+                            android:layout_width="70dp"
+                            android:layout_height="20dp"
+                            android:layout_weight="1"
+                            android:background="@color/shimmer_placeholder"
+                            android:gravity="start"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/normal_font"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_name_car"
+                            android:layout_width="70dp"
+                            android:layout_height="20dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:background="@color/shimmer_placeholder"
+                            android:gravity="start"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_font" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/ll_text_detail_top_margin"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_car_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_title_car_type"
+                                android:layout_width="70dp"
+                                android:layout_height="20dp"
+                                android:background="@color/shimmer_placeholder"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/normal_font"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/txt_tip_car"
+                                android:layout_width="70dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@color/shimmer_placeholder"
+                                android:gravity="start"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/small_font" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_fuel_type"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_title_fuel_type"
+                                android:layout_width="70dp"
+                                android:layout_height="20dp"
+                                android:background="@color/shimmer_placeholder"
+                                android:gravity="start"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/normal_font"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/txt_fuel_type"
+                                android:layout_width="70dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="6dp"
+                                android:background="@color/shimmer_placeholder"
+                                android:gravity="start"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/small_font" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_car_model_num"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_title_car_model_num"
+                                android:layout_width="70dp"
+                                android:layout_height="20dp"
+                                android:background="@color/shimmer_placeholder"
+                                android:gravity="start"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/normal_font"
+                                android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/txt_model_car"
+                                android:layout_width="70dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_weight="2"
+                                android:background="@color/shimmer_placeholder"
+                                android:gravity="start"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/small_font" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <LinearLayout
+                            android:id="@+id/ll_plak"
+                            android:layout_width="170dp"
+                            android:layout_height="50dp"
+                            android:background="@color/shimmer_placeholder"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/ll_car_model_num"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ll_btn_height"
+                        android:layout_marginTop="@dimen/ll_btn_tip_margin"
+                        android:layout_marginBottom="@dimen/ll_btn_bottom_margin"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ll_plak">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/service"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/right_left_btn_margin"
+                            android:layout_weight="1"
+                            android:background="@color/shimmer_placeholder"
+                            android:paddingLeft="@dimen/right_left_btn_padding"
+                            android:paddingRight="@dimen/next_service_padding"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/very_small_font" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/right_left_btn_margin"
+                            android:layout_marginEnd="@dimen/right_left_btn_margin"
+                            android:layout_weight="1"
+                            android:background="@color/shimmer_placeholder"
+                            android:paddingLeft="@dimen/right_left_btn_padding"
+                            android:paddingRight="@dimen/right_left_btn_padding"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/very_small_font" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_edit_customer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/right_left_btn_margin"
+                            android:layout_weight="1"
+                            android:background="@color/shimmer_placeholder"
+                            android:paddingLeft="@dimen/right_left_btn_padding"
+                            android:paddingRight="@dimen/right_left_btn_padding"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/very_small_font" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:background="@color/shimmer_placeholder"
+                android:padding="5dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv_car_detail" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

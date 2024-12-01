@@ -1,10 +1,8 @@
 package com.servicea;
 
 
-import static com.servicea.app.G.Activity;
 import static com.servicea.app.G.KEY_CITY_ID_CHANGED;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,14 +14,11 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -37,22 +32,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.servicea.activities.CarListActivity;
+import com.servicea.activities.LastServiseDoneActivity;
 import com.servicea.activities.ListReserveActivity;
 import com.servicea.activities.ListServiceCenterActivity;
 import com.servicea.activities.ListTimingActivity;
 import com.servicea.adapter.AdapterJobCategory;
 import com.servicea.adapter.AdapterServiceCenterGrid;
-import com.servicea.app.Constants;
-import com.servicea.app.CustomMaterialShowcaseView;
 import com.servicea.app.RecyclerItemClickListener;
 import com.servicea.app.Utils;
 import com.servicea.model.ModelJobCategory;
@@ -75,7 +69,7 @@ import java.util.stream.Collectors;
 
 import ir.servicea.R;
 
-import com.servicea.activities.AddCustomerActivity;
+import com.servicea.activities.AddNewCarActivity;
 import com.servicea.activity.AddServicesActivity;
 import com.servicea.activities.AlarmsActivity;
 import com.servicea.activities.WebViewActivity;
@@ -93,35 +87,39 @@ import com.servicea.model.ModelItemMain;
 import com.servicea.model.SliderItem;
 import com.servicea.retrofit.Api;
 import com.servicea.retrofit.RetrofitClient;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.IndicatorView.draw.controller.DrawController;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
-import uk.co.deanwild.materialshowcaseview.target.Target;
-import uk.co.deanwild.materialshowcaseview.target.ViewTarget;
 
 public class FragmentMain extends Fragment {
-    private RecyclerView gridView_main, recycle_advertise_one, recycle_advertise_two, recycle_advertise_top;
-    private ShimmerFrameLayout advertise_one_shimmer_layout, advertise_two_shimmer_layout, best_service_centers_shimmer_layout, job_categories_shimmer_layout, slider_shimmer_layout, grid_main_shimmer_layout, next_service_shimmer_layout;
+    private RecyclerView /*gridView_main,*/ recycle_advertise_one, recycle_advertise_two, recycle_advertise_top;
+    private ShimmerFrameLayout advertise_one_shimmer_layout, advertise_two_shimmer_layout, best_service_centers_shimmer_layout, job_categories_shimmer_layout, slider_shimmer_layout
+            /*grid_main_shimmer_layout,*/ /*next_service_shimmer_layout*/;
     private ImageView iv_add_more_centers, ic_reserve_list;
+    private ConstraintLayout const_car, const_serviceA;
     private List<ModelItemMain> number = new ArrayList<>();
     private List<ModelAdvertise> advertises = new ArrayList<>();
     private List<ModelAdvertise> advertisess = new ArrayList<>();
     private List<ModelAdvertise2> advertises2 = new ArrayList<>();
     private TextView txt_tile_action_bar;
     private EditText edt1, edt2, edt3, edt4, edt5, edt6, edt7, edt8;
-    private TextView txt_product_name, txt_car_name, txt_date, txt_search_plak, txt_search_phone, txt_title_advertise1, txt_title_advertise2, txt_title_advertisetop, txt_title_category1, txt_best_marakez1, txt_next_serv, txt_empty_next_service;
+    private TextView txt_product_name, txt_car_name, txt_date, txt_search_plak, txt_search_phone, txt_title_advertise1, txt_title_advertise2, txt_title_advertisetop, txt_title_category1, txt_best_marakez1, /*txt_next_serv,*/
+            txt_empty_next_service;
 
     private TextView txt_add_more_centers;
     private TextInputLayout edt_phone;
     private TextInputEditText edt_phone_number;
-    private LinearLayout ly_plak;
+    private LinearLayout ly_plak, lrn_reserve_car_service;
     private DataBaseHelper mDBHelper;
     private SQLiteDatabase mDatabase;
-    private ViewPager2 sliderView;
+    private SliderView sliderView;
     private SliderAdapterExample adapter;
     PreferenceUtil preferenceUtil;
     private AdapterListAdvertise blogCar;
@@ -132,7 +130,7 @@ public class FragmentMain extends Fragment {
     private List<ServiceCenter> serviceCenters = new ArrayList<>();
     private RecyclerView recycle_service_centers;
     private AdapterServiceCenterGrid adapterServiceCenter;
-    private ViewGroup service_badi, layout_item_next_service;
+    private ViewGroup /*layout_item_next_service,*/ll_service_badi;
 
     private String centerScore = "0";
     private int serviceCenterOffset = 0;
@@ -149,12 +147,12 @@ public class FragmentMain extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_new, container, false);
         preferenceUtil = new PreferenceUtil(getContext());
-        number.add(new ModelItemMain(4, "مشاوره", R.drawable.ic_moshavereh, R.drawable.ic_bg_car_info));
-        number.add(new ModelItemMain(3, "خدمات سیار", R.drawable.ic_mail, R.drawable.ic_main_bg_message));
-        number.add(new ModelItemMain(1, "سرویس\u200Cها", R.drawable.ic_services, R.drawable.ic_bg_services));
-        number.add(new ModelItemMain(5, "خودروها", R.drawable.ic_car_info, R.drawable.ic_bg_customer));
+//        number.add(new ModelItemMain(4, "مشاوره", R.drawable.ic_moshavereh, R.drawable.ic_bg_car_info));
+//        number.add(new ModelItemMain(3, "خدمات سیار", R.drawable.ic_mail, R.drawable.ic_main_bg_message));
+//        number.add(new ModelItemMain(1, "سرویس\u200Cها", R.drawable.ic_services, R.drawable.ic_bg_services));
+//        number.add(new ModelItemMain(5, "خودروها", R.drawable.ic_car_info, R.drawable.ic_bg_customer));
         // number.add(new ModelItemMain(8, "کارشناسی", R.drawable.ic_setting, R.drawable.ic_bg_setting));
         // number.add(new ModelItemMain(7, "فروشگاه", R.drawable.ic_repeat, R.drawable.ic_bg_store));
         // number.add(new ModelItemMain(6, "خلافی", R.drawable.ic_coin, R.drawable.ic_bg_coin));
@@ -174,7 +172,7 @@ public class FragmentMain extends Fragment {
         txt_title_advertisetop.setTypeface(G.Bold);
         txt_title_category1.setTypeface(G.ExtraBold);
         txt_best_marakez1.setTypeface(G.ExtraBold);
-        txt_next_serv.setTypeface(G.ExtraBold);
+//        txt_next_serv.setTypeface(G.ExtraBold);
         edt1.requestFocus();
 
 
@@ -203,36 +201,35 @@ public class FragmentMain extends Fragment {
         recycle_advertise_top.setLayoutManager(horizontalLayoutManagaer3);
         recycle_advertise_top.setAdapter(new AdapterListAdvertiseTwo(getContext(), advertises2));
 
-//        SliderAdapterExample.OnImageSizeLoaded onSliderImageSizeLoaded = new SliderAdapterExample.OnImageSizeLoaded() {
-//            @Override
-//            public void onSizeLoaded(int height) {
-//
-//               /* slider_root.getLayoutParams().height = height;
-//                slider_root.requestLayout();
-//
-//                sliderView.getLayoutParams().height = height;
-//                sliderView.requestLayout();*/
-//            }
-//        };
-//        adapter = new SliderAdapterExample(getContext(), onSliderImageSizeLoaded);
-//        sliderView.setAdapter(adapter);
-//        sliderView.setSliderAdapter(adapter);
-//        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-//        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-//        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
-//        sliderView.setIndicatorSelectedColor(Color.WHITE);
-//        sliderView.setIndicatorUnselectedColor(Color.GRAY);
-//        sliderView.setScrollTimeInSec(3);
-//        sliderView.setAutoCycle(true);
-//        sliderView.startAutoCycle();
+        SliderAdapterExample.OnImageSizeLoaded onSliderImageSizeLoaded = new SliderAdapterExample.OnImageSizeLoaded() {
+            @Override
+            public void onSizeLoaded(int height) {
+
+               /* slider_root.getLayoutParams().height = height;
+                slider_root.requestLayout();
+
+                sliderView.getLayoutParams().height = height;
+                sliderView.requestLayout();*/
+            }
+        };
+        adapter = new SliderAdapterExample(getContext(), onSliderImageSizeLoaded);
+        sliderView.setSliderAdapter(adapter);
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        sliderView.setIndicatorSelectedColor(Color.WHITE);
+        sliderView.setIndicatorUnselectedColor(Color.GRAY);
+        sliderView.setScrollTimeInSec(3);
+        sliderView.setAutoCycle(true);
+        sliderView.startAutoCycle();
 
         getServiceTiming();
-//        sliderView.setOnIndicatorClickListener(new DrawController.ClickListener() {
-//            @Override
-//            public void onIndicatorClicked(int position) {
-//                Log.i("GGG", "onIndicatorClicked: " + sliderView.getCurrentPagePosition());
-//            }
-//        });
+        sliderView.setOnIndicatorClickListener(new DrawController.ClickListener() {
+            @Override
+            public void onIndicatorClicked(int position) {
+                Log.i("GGG", "onIndicatorClicked: " + sliderView.getCurrentPagePosition());
+            }
+        });
         view.findViewById(R.id.txt_title_advertise2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -250,8 +247,7 @@ public class FragmentMain extends Fragment {
             }
         });
 
-
-        service_badi.setOnClickListener(new View.OnClickListener() {
+        ll_service_badi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), ListTimingActivity.class));
@@ -272,23 +268,21 @@ public class FragmentMain extends Fragment {
     }
 
 
-    public ViewGroup marakez_khadamat_khodro, behtarin_marakez, majale_khodro, majale_amozeshi/*, slider_root*/;
+    public ViewGroup marakez_khadamat_khodro, behtarin_marakez, majale_khodro, majale_amozeshi, slider_root;
 
     private List<String> listJobs = new ArrayList<>();
     private List<Integer> listJobsIds = new ArrayList<>();
     private ArrayAdapter spinnerAdapter;
 
     public void getServiceTiming() {
-        //service_badi.setVisibility(View.GONE);
         Api api = RetrofitClient.createService(Api.class, G.api_username, G.api_password);
         Call<ResponseBody> request = api.getReportTiming(PreferenceUtil.getUser_id() + "", 9999 + "");
         request.enqueue(new retrofit2.Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-                stopShimmer(next_service_shimmer_layout);
-                stopShimmer(grid_main_shimmer_layout);
-                setupGridMainMenu();
-                service_badi.setVisibility(View.VISIBLE);
+//                stopShimmer(next_service_shimmer_layout);
+//                stopShimmer(grid_main_shimmer_layout);
+                setupReserveAndCarServices();
                 G.Log(call.request().toString());
                 if (response.body() != null) {
                     try {
@@ -331,14 +325,14 @@ public class FragmentMain extends Fragment {
                                         type = "تعویض";
                                     }
                                     txt_empty_next_service.setVisibility(View.GONE);
-                                    layout_item_next_service.setVisibility(View.VISIBLE);
+//                                    layout_item_next_service.setVisibility(View.VISIBLE);
                                     txt_product_name.setText(type + " " + product_group_name);
-                                    txt_car_name.setText("خودروی " + car_name);
+//                                    txt_car_name.setText("خودروی " + car_name);
                                     txt_date.setText("" + G.toShamsi(due_date));
                                 }
                             }
                         } else {
-                            layout_item_next_service.setVisibility(View.GONE);
+//                            layout_item_next_service.setVisibility(View.GONE);
                             txt_empty_next_service.setVisibility(View.VISIBLE);
                         }
                     } catch (JSONException | IOException e) {
@@ -346,14 +340,14 @@ public class FragmentMain extends Fragment {
                         e.printStackTrace();
                     }
                 }
-//                getSlider();
+                getSlider();
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
                 G.stop_loading();
                 G.toast("مشکل در برقراری ارتباط");
-//                getSlider();
+                getSlider();
             }
         });
 
@@ -386,7 +380,7 @@ public class FragmentMain extends Fragment {
                     JSONArray records = object.getJSONArray("records");
                     if (records.length() > 0) {
                         marakez_khadamat_khodro.setVisibility(View.VISIBLE);
-//                        List<SliderItem> sliderItemList = new ArrayList<>();
+                        List<SliderItem> sliderItemList = new ArrayList<>();
                         int posi = 0;
                         List<ModelJobCategory> listJobCategory = new ArrayList<>();
 //                       ModelJobCategory modelJobCategory = new ModelJobCategory();
@@ -397,7 +391,7 @@ public class FragmentMain extends Fragment {
 //                        listJobCategory.add(modelJobCategory);
                         for (int i = 0; i < records.length(); i++) {
                             JSONObject obj = records.getJSONObject(i);
-//                            SliderItem sliderItem = new SliderItem();
+                            SliderItem sliderItem = new SliderItem();
                             int id = obj.getInt("id");
                             String title = obj.getString("title");
                             if (id == G.preference.getInt("job_category_id", 1)) {
@@ -798,7 +792,7 @@ public class FragmentMain extends Fragment {
                     }
                 } else {
                     G.stop_loading();
-                    Intent intent = new Intent(getContext(), AddCustomerActivity.class);
+                    Intent intent = new Intent(getContext(), AddNewCarActivity.class);
                     intent.putExtra("firstName", "null");
                     startActivity(intent);
                     preferenceUtil.cashNewCustomerPlak(edt1.getText().toString(), edt2.getText().toString(), edt3.getText().toString(), edt4.getText().toString(), edt5.getText().toString(), edt6.getText().toString(), edt7.getText().toString(), edt8.getText().toString());
@@ -933,7 +927,7 @@ public class FragmentMain extends Fragment {
 
                 } else {
                     G.stop_loading();
-                    Intent intent = new Intent(getContext(), AddCustomerActivity.class);
+                    Intent intent = new Intent(getContext(), AddNewCarActivity.class);
                     intent.putExtra("firstName", "null");
                     startActivity(intent);
                     preferenceUtil.cashNewCustomerPhone(phone);
@@ -1004,6 +998,23 @@ public class FragmentMain extends Fragment {
 //                    edt_phone.setVisibility(View.GONE);
 //                    txt_search_phone.setTextColor(getResources().getColor(R.color.text_low_dark));
 //                }
+            }
+        });
+
+        const_car.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CarListActivity.class);
+                intent.putExtra("source", "main");
+                startActivity(intent);
+//                context.startActivity(new Intent(context, CustomerActivity.class));
+            }
+        });
+
+        const_serviceA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context, LastServiseDoneActivity.class).putExtra("idCustomer", 0));
             }
         });
     }
@@ -1244,12 +1255,13 @@ public class FragmentMain extends Fragment {
         edt6 = view.findViewById(R.id.edt6);
         edt7 = view.findViewById(R.id.edt7);
         edt8 = view.findViewById(R.id.edt8);
-        gridView_main = view.findViewById(R.id.gridView_main);
+//        gridView_main = view.findViewById(R.id.rv_car_service_center);
 //        txt_tile_action_bar = view.findViewById(R.id.txt_tile_action_bar);
         txt_search_plak = view.findViewById(R.id.txt_search_plak);
         txt_search_phone = view.findViewById(R.id.txt_search_phone);
         edt_phone = view.findViewById(R.id.edt_phone);
         ly_plak = view.findViewById(R.id.ly_plak);
+        lrn_reserve_car_service = view.findViewById(R.id.lrn_reserve_car_service);
         edt_phone_number = view.findViewById(R.id.edt_phone_number);
         recycle_advertise_two = view.findViewById(R.id.recycle_advertise_two);
         recycle_advertise_one = view.findViewById(R.id.recycle_advertise_one);
@@ -1258,10 +1270,10 @@ public class FragmentMain extends Fragment {
         txt_title_advertisetop = view.findViewById(R.id.txt_title_advertisetop);
         txt_title_category1 = view.findViewById(R.id.txt_title_category);
         txt_best_marakez1 = view.findViewById(R.id.txt_best_marakez);
-        txt_next_serv = view.findViewById(R.id.txt_next_serv);
+//        txt_next_serv = view.findViewById(R.id.txt_next_serv);
         txt_empty_next_service = view.findViewById(R.id.empty_next_service);
         recycle_advertise_top = view.findViewById(R.id.recycle_advertise_top);
-//        sliderView = view.findViewById(R.id.sliderView);
+        sliderView = view.findViewById(R.id.sliderView);
         searchpelak = view.findViewById(R.id.searchpelak);
       /*  txt_add_more_centers = view.findViewById(R.id.txt_add_more_centers);
         txt_add_more_centers.setTypeface(G.Bold);
@@ -1270,7 +1282,7 @@ public class FragmentMain extends Fragment {
         recycle_service_centers = view.findViewById(R.id.recycle_service_centers);
         //iv_add_more_centers = view.findViewById(R.id.iv_add_more_centers);
         txt_product_name = view.findViewById(R.id.txt_product_name);
-        txt_car_name = view.findViewById(R.id.txt_car_name);
+//        txt_car_name = view.findViewById(R.id.txt_car_name);
         txt_date = view.findViewById(R.id.txt_date);
 
         /*new Handler().postDelayed(new Runnable() {
@@ -1292,16 +1304,17 @@ public class FragmentMain extends Fragment {
         majale_amozeshi = view.findViewById(R.id.majale_amozeshi);
         majale_amozeshi.setVisibility(View.GONE);
 
-//        slider_root = view.findViewById(R.id.slider_root);
-//        slider_root.setVisibility(View.GONE);
+        slider_root = view.findViewById(R.id.slider_root);
+        slider_root.setVisibility(View.GONE);
 
-        service_badi = view.findViewById(R.id.service_badi);
-        layout_item_next_service = view.findViewById(R.id.layout_item_next_service);
-        service_badi.setVisibility(View.GONE);
+        ll_service_badi = view.findViewById(R.id.ll_service_badi);
+//        layout_item_next_service = view.findViewById(R.id.layout_item_next_service);
 
         ic_reserve_list = view.findViewById(R.id.ic_reserve_list);
         ic_reserve_list.setVisibility(View.VISIBLE);
 
+        const_car = view.findViewById(R.id.const_car);
+        const_serviceA = view.findViewById(R.id.const_serviceA);
         serviceCenters.clear();
         recycle_service_centers.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         AdapterServiceCenterGrid.OnAddMoreClicked onAddMoreCentersClicked = new AdapterServiceCenterGrid.OnAddMoreClicked() {
@@ -1321,8 +1334,8 @@ public class FragmentMain extends Fragment {
         best_service_centers_shimmer_layout = view.findViewById(R.id.best_service_centers_shimmer_layout);
         job_categories_shimmer_layout = view.findViewById(R.id.job_categories_shimmer_layout);
         slider_shimmer_layout = view.findViewById(R.id.slider_shimmer_layout);
-        grid_main_shimmer_layout = view.findViewById(R.id.grid_main_shimmer_layout);
-        next_service_shimmer_layout = view.findViewById(R.id.next_service_shimmer_layout);
+//        grid_main_shimmer_layout = view.findViewById(R.id.grid_main_shimmer_layout);
+//        next_service_shimmer_layout = view.findViewById(R.id.next_service_shimmer_layout);
 
     }
 
@@ -1332,18 +1345,20 @@ public class FragmentMain extends Fragment {
         best_service_centers_shimmer_layout.startShimmer();
         job_categories_shimmer_layout.startShimmer();
         slider_shimmer_layout.startShimmer();
-        grid_main_shimmer_layout.startShimmer();
-        next_service_shimmer_layout.startShimmer();
+//        grid_main_shimmer_layout.startShimmer();
+//        next_service_shimmer_layout.startShimmer();
     }
 
-    private void setupGridMainMenu() {
-        gridView_main.setLayoutManager(new GridLayoutManager(getContext(), 4));
-        gridView_main.setAdapter(new AdapterListGridMain(getContext(), number));
+    private void setupReserveAndCarServices() {
+//        gridView_main.setLayoutManager(new GridLayoutManager(getContext(), 4));
+//        gridView_main.setAdapter(new AdapterListGridMain(getContext(), number));
 
+        lrn_reserve_car_service.setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ShowCase();
+                //TODO
+//                ShowCase();
             }
         }, 1200);
     }
@@ -1359,63 +1374,63 @@ public class FragmentMain extends Fragment {
         sequence.setConfig(config);
 
         android.app.Activity activity = getActivity();
-        sequence.addSequenceItem(Utils.createCustomShowcaseView(activity,searchpelak, getString(R.string.showcase_search_plak), getString(R.string.next_showcase)));
-        sequence.addSequenceItem(Utils.createCustomShowcaseView(activity,AdapterListGridMain.listCustView, getString(R.string.showcase_list_cust_view), getString(R.string.next_showcase)));
-        sequence.addSequenceItem(Utils.createCustomShowcaseView(activity,AdapterListGridMain.listServiceView, getString(R.string.showcase_list_service_view), getString(R.string.close_showcase)));
+        sequence.addSequenceItem(Utils.createCustomShowcaseView(activity, searchpelak, getString(R.string.showcase_search_plak), getString(R.string.next_showcase)));
+        sequence.addSequenceItem(Utils.createCustomShowcaseView(activity, AdapterListGridMain.listCustView, getString(R.string.showcase_list_cust_view), getString(R.string.next_showcase)));
+        sequence.addSequenceItem(Utils.createCustomShowcaseView(activity, AdapterListGridMain.listServiceView, getString(R.string.showcase_list_service_view), getString(R.string.close_showcase)));
         sequence.start();
     }
 
-//    public void getSlider() {
-//        slider_root.setVisibility(View.GONE);
-////      G.loading(G.Activity);
-//        String d_id = PreferenceUtil.getD_id();
-//        Api api = RetrofitClient.createService(Api.class, G.api_username, G.api_password);
-//        Call<ResponseBody> request = api.getSlider();
-//        request.enqueue(new retrofit2.Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
-//                assert response.body() != null;
-//                try {
-//                    String result = response.body().string();
-//                    G.Log("slider:" + result);
-//                    JSONObject object = G.StringtoJSONObject(result);
-//                    JSONArray records = object.getJSONArray("records");
-//                    if (records.length() > 0) {
-//                        List<SliderItem> sliderItemList = new ArrayList<>();
-//                        slider_root.setVisibility(View.VISIBLE);
-//                        for (int i = 0; i < records.length(); i++) {
-//                            JSONObject obj = records.getJSONObject(i);
-//                            SliderItem sliderItem = new SliderItem();
-//                            String id = obj.getString("id");
-//                            String title = obj.getString("title");
-//                            String image = obj.getString("image");
-//                            String url = obj.getString("url");
-//                            sliderItem.setDescription(title);
-//                            sliderItem.setUrl(url);
-//                            sliderItem.setImageUrl(G.PreImagesURL + "slides/" + image);
-//                            sliderItemList.add(sliderItem);
-//                        }
-//                        stopShimmer(slider_shimmer_layout);
-//                        adapter.renewItems(sliderItemList);
-//                    } else {
-//                        G.toast("مشکل در دریافت اطلاعات");
-//                    }
-//                } catch (JSONException | IOException e) {
-//                    G.toast("مشکل در تجزیه اطلاعات");
-//                    e.printStackTrace();
-//                }
-//                getJob_categories();
-//                G.stop_loading();
-//            }
-//
-//            @Override
-//            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
-//                getJob_categories();
-//                G.stop_loading();
-//                G.toast("مشکل در برقراری ارتباط");
-//            }
-//        });
-//    }
+    public void getSlider() {
+        slider_root.setVisibility(View.GONE);
+//      G.loading(G.Activity);
+        String d_id = PreferenceUtil.getD_id();
+        Api api = RetrofitClient.createService(Api.class, G.api_username, G.api_password);
+        Call<ResponseBody> request = api.getSlider();
+        request.enqueue(new retrofit2.Callback<ResponseBody>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
+                assert response.body() != null;
+                try {
+                    String result = response.body().string();
+                    G.Log("slider:" + result);
+                    JSONObject object = G.StringtoJSONObject(result);
+                    JSONArray records = object.getJSONArray("records");
+                    if (records.length() > 0) {
+                        List<SliderItem> sliderItemList = new ArrayList<>();
+                        slider_root.setVisibility(View.VISIBLE);
+                        for (int i = 0; i < records.length(); i++) {
+                            JSONObject obj = records.getJSONObject(i);
+                            SliderItem sliderItem = new SliderItem();
+                            String id = obj.getString("id");
+                            String title = obj.getString("title");
+                            String image = obj.getString("image");
+                            String url = obj.getString("url");
+                            sliderItem.setDescription(title);
+                            sliderItem.setUrl(url);
+                            sliderItem.setImageUrl(G.PreImagesURL + "slides/" + image);
+                            sliderItemList.add(sliderItem);
+                        }
+                        stopShimmer(slider_shimmer_layout);
+                        adapter.renewItems(sliderItemList);
+                    } else {
+                        G.toast("مشکل در دریافت اطلاعات");
+                    }
+                } catch (JSONException | IOException e) {
+                    G.toast("مشکل در تجزیه اطلاعات");
+                    e.printStackTrace();
+                }
+                getJob_categories();
+                G.stop_loading();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBody> call, @NonNull Throwable t) {
+                getJob_categories();
+                G.stop_loading();
+                G.toast("مشکل در برقراری ارتباط");
+            }
+        });
+    }
 
     public void getProfile() {
 

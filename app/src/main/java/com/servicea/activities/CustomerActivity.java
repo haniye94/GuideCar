@@ -170,7 +170,7 @@ public class CustomerActivity extends AppCompatActivity {
         txt_search_phone = findViewById(R.id.txt_search_phone);
         edt_name = findViewById(R.id.edt_name);
         edt_phone = findViewById(R.id.edt_phone);
-        ly_empty = findViewById(R.id.ly_empty);
+        ly_empty = findViewById(R.id.ll_empty);
         search_customer = findViewById(R.id.search_customer);
         edt_phone_number = findViewById(R.id.edt_phone_number);
         edt_nameFamily = findViewById(R.id.edt_nameFamily);
@@ -395,7 +395,7 @@ public class CustomerActivity extends AppCompatActivity {
         findViewById(R.id.add_car).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CustomerActivity.this, AddCustomerActivity.class);
+                Intent intent = new Intent(CustomerActivity.this, AddNewCarActivity.class);
                 intent.putExtra("firstName", "null");
                 startActivity(intent);
             }
@@ -544,7 +544,7 @@ public class CustomerActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         bottomSheetDialog.dismiss();
-                        Intent intent = new Intent(CustomerActivity.this, AddCustomerActivity.class);
+                        Intent intent = new Intent(CustomerActivity.this, AddNewCarActivity.class);
                         intent.putExtra("idCustomer", model.getId() + "");
                         intent.putExtra("id_car", model.getCar_id() + "");
                         intent.putExtra("firstName", model.getFirst_name());

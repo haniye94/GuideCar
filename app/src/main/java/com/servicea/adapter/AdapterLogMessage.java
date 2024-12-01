@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.servicea.app.CalendarTool;
 import com.servicea.app.G;
 import com.servicea.model.ModelML;
+
+import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.List;
 
@@ -77,28 +78,23 @@ public class AdapterLogMessage extends RecyclerView.Adapter<AdapterLogMessage.Vi
         }
 
         if (!models.get(position).isExpanded()) {
-//            holder.expandableLayout.collapse();
-            holder.expandableLayout.setVisibility(View.GONE);
+            holder.expandableLayout.collapse();
             holder.toggle.setImageResource(R.drawable.arrow_down_24);
             models.get(position).setExpanded(false);
         } else {
-//            holder.expandableLayout.expand();
-            holder.expandableLayout.setVisibility(View.VISIBLE);
-
+            holder.expandableLayout.expand();
             holder.toggle.setImageResource(R.drawable.arrow_up_24);
             models.get(position).setExpanded(true);
         }
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (/*holder.expandableLayout.isExpanded()*/holder.expandableLayout.getVisibility() == View.VISIBLE) {
-//                    holder.expandableLayout.collapse();
-                    holder.expandableLayout.setVisibility(View.GONE);
+                if (holder.expandableLayout.isExpanded()) {
+                    holder.expandableLayout.collapse();
                     holder.toggle.setImageResource(R.drawable.arrow_down_24);
                     models.get(position).setExpanded(false);
                 } else {
-//                    holder.expandableLayout.expand();
-                    holder.expandableLayout.setVisibility(View.VISIBLE);
+                    holder.expandableLayout.expand();
                     holder.toggle.setImageResource(R.drawable.arrow_up_24);
                     models.get(position).setExpanded(true);
                 }
@@ -113,7 +109,7 @@ public class AdapterLogMessage extends RecyclerView.Adapter<AdapterLogMessage.Vi
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView char_count, user, user_phone, date, price, content;
-        RelativeLayout expandableLayout;
+        ExpandableLayout expandableLayout;
         ImageView toggle;
         Button btn_try_send_again;
         ViewGroup root;
@@ -127,8 +123,7 @@ public class AdapterLogMessage extends RecyclerView.Adapter<AdapterLogMessage.Vi
             price = itemView.findViewById(R.id.total_price);
             content = itemView.findViewById(R.id.content);
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
-//            expandableLayout.collapse();
-            expandableLayout.setVisibility(View.GONE);
+            expandableLayout.collapse();
             root = itemView.findViewById(R.id.root);
             toggle = itemView.findViewById(R.id.toggle);
         }

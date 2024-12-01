@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="password_title">رمز عبور</string>
     <string name="password_message">برای ورود میتوانید از رمز حساب کاربری خود استفاده کنید</string>
     <string name="title_activity_settings">Settings</string>
@@ -94,4 +94,20 @@
     <string name="showcase_list_service_view">با وارد شدن به این قسمت می‌توان سرویس های انجام شده را مشاهده، ویرایش و حذف نمود.</string>
     <string name="showcase_baztaviz">در این بخش شما باید تعیین کنید که بازدید انجام شده یا تعویض شده در صورت تعویض باید نوع محصول تعویض شده را وارد کنید.</string>
     <string name="showcase_note">در این قسمت نوع محصول تعویض شده را وارد کنید که باید نام محصول و مقدار را ثبت کنید. به طور مثال\n نام: روغن موتور X\n مقدار: 5 لیتر</string>
+
+    //added by haniye
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_car">خودروهای من</string>
+    <string name="title_kilometer">تخمین کیلومتر فعلی :</string>
+    <string name="title_next_service">سرویس بعدی این خودرو</string>
+    <string name="change_engin_oil">تعویض روغن موتور</string>
+    <string name="show_car">ویرایش خودرو</string>
+    <string name="show_service">نمایش سرویس</string>
+    <string name="update_kilometer">بروزرسانی کیلومتر فعلی</string>
+    <string name="next_service">سرویس بعدی</string>
+    <string name="servisea">سرویسا</string>
+    <string name="engin_oil">روغن موتور</string>
+    <string name="reminder">یادآوری</string>
+    <string name="car">خودرو</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiaGFuaWNvIiwiYSI6ImNtMzF6b2kyYTB3NjgyaXB0b3d3ejBuN2cifQ.ks66HI0wwPQJcICEv-_tSw</string>
 </resources>

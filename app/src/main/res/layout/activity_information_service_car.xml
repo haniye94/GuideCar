@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="محمود جعفری همدانی"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/old_gray"
                     android:textSize="15dp" />
 
                 <TextView
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="خودرو 206"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/old_gray"
                     android:textSize="15dp" />
             </LinearLayout>
 
@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0918 445 5585"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/old_gray"
                     android:textSize="15dp"
                     android:visibility="invisible" />
                 <include
@@ -139,7 +139,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="207,000"
-                        android:textColor="@color/gray"
+                        android:textColor="@color/old_gray"
                         android:textSize="23dp" />
 
                     <TextView
@@ -149,7 +149,7 @@
                         android:gravity="center"
                         android:lineSpacingExtra="-0.2dp"
                         android:text="کیلومتر فعلی"
-                        android:textColor="@color/gray"
+                        android:textColor="@color/old_gray"
                         android:textSize="11dp" />
                 </LinearLayout>
 
@@ -189,7 +189,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="207,000"
-                        android:textColor="@color/gray"
+                        android:textColor="@color/old_gray"
                         android:textSize="23dp" />
 
                     <TextView
@@ -199,7 +199,7 @@
                         android:gravity="center"
                         android:lineSpacingExtra="-0.2dp"
                         android:text="کیلومتر بعدی"
-                        android:textColor="@color/gray"
+                        android:textColor="@color/old_gray"
                         android:textSize="11dp" />
                 </LinearLayout>
             </LinearLayout>
@@ -229,7 +229,7 @@
                             android:layout_height="wrap_content"
                             android:lineSpacingExtra="-0.2dp"
                             android:text="تاریخ سرویس:"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="12.5dp" />
 
                         <TextView
@@ -238,7 +238,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
                             android:text="1400/03/24"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="13dp" />
                     </LinearLayout>
 
@@ -258,7 +258,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="توضیحات: "
-                                android:textColor="@color/gray"
+                                android:textColor="@color/old_gray"
                                 android:textSize="12.5dp" />
 
                             <TextView
@@ -266,7 +266,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="توضیحات:"
-                                android:textColor="@color/gray"
+                                android:textColor="@color/old_gray"
                                 android:textSize="12dp" />
                         </LinearLayout>
 
@@ -275,7 +275,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
                             android:text=""
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="13dp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -298,7 +298,7 @@
                             android:layout_height="wrap_content"
                             android:lineSpacingExtra="-0.2dp"
                             android:text="میانگین کارکرد:"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="12.5dp" />
 
                         <TextView
@@ -308,7 +308,7 @@
                             android:layout_marginRight="5dp"
                             android:lineSpacingExtra="-0.2dp"
                             android:text="56"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="13dp" />
                     </LinearLayout>
 
@@ -363,7 +363,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="سرویس های انجام شده"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/old_gray"
                     android:textSize="12dp" />
 
                 <ImageView
@@ -376,7 +376,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="تعویض"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/old_gray"
                     android:textSize="12dp" />
 
                 <ImageView
@@ -390,7 +390,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="بازدید"
-                    android:textColor="@color/gray"
+                    android:textColor="@color/old_gray"
                     android:textSize="12dp" />
             </LinearLayout>
 
@@ -426,7 +426,7 @@
                 android:layout_weight="1"
                 android:lineSpacingExtra="-0.2dp"
                 android:text="مبلغ این سرویس"
-                android:textColor="@color/gray"
+                android:textColor="@color/old_gray"
                 android:textSize="15dp" />
 
             <TextView
@@ -435,7 +435,7 @@
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="-0.2dp"
                 android:text="5,450,000"
-                android:textColor="@color/gray"
+                android:textColor="@color/old_gray"
                 android:textSize="16dp" />
 
             <TextView
@@ -445,7 +445,7 @@
                 android:layout_marginRight="7dp"
                 android:lineSpacingExtra="-0.2dp"
                 android:text="ریال"
-                android:textColor="@color/gray"
+                android:textColor="@color/old_gray"
                 android:textSize="12dp" />
 
         </LinearLayout>

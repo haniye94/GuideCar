@@ -55,7 +55,7 @@ public class AdapterServiceCenterGrid extends RecyclerView.Adapter<RecyclerView.
 
         if(viewType==LAYOUT_ONE)
         {
-            view = layoutInflater.inflate(R.layout.adapter_service_center_grid,parent,false);
+            view = layoutInflater.inflate(R.layout.item_service_center_grid,parent,false);
             viewHolder = new ViewHolderOne(view);
         }
         else if(viewType==LAYOUT_TWO)
@@ -129,9 +129,9 @@ public class AdapterServiceCenterGrid extends RecyclerView.Adapter<RecyclerView.
         public ViewHolderOne(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
-            percent = itemView.findViewById(R.id.percent);
-            score = itemView.findViewById(R.id.score);
-            txtjob=itemView.findViewById(R.id.txt_a_cat);
+            percent = itemView.findViewById(R.id.tv_percent);
+            score = itemView.findViewById(R.id.tv_score);
+            txtjob=itemView.findViewById(R.id.tv_category);
 
             img_profile = itemView.findViewById(R.id.img_profile);
             root = itemView.findViewById(R.id.root);

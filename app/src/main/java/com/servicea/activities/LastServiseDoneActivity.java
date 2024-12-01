@@ -558,7 +558,7 @@ public class LastServiseDoneActivity extends AppCompatActivity implements Shared
         edt_phone = findViewById(R.id.edt_phone);
         edt_name = findViewById(R.id.edt_name);
         ly_plak = findViewById(R.id.ly_plak);
-        ly_empty = findViewById(R.id.ly_empty);
+        ly_empty = findViewById(R.id.ll_empty);
         img_search_service = findViewById(R.id.img_search_service);
         edt_phone_number = findViewById(R.id.edt_phone_number);
         edt_nameFamily = findViewById(R.id.edt_nameFamily);

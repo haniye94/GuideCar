@@ -2,7 +2,6 @@ package com.servicea.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,8 +23,8 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.servicea.R;
 
 public class InformationCustomersActivity extends AppCompatActivity {
-    TextView txt_benzini, txt_doghane, txt_dezeli,txt_hibrid,txt_fuel_car;
-    TextView txt_name_customer, txt_phone_customer, txt_date_birthday, txt_gender, txt_type_customer, txt_date_save, txt_name_car,txt_chasi_car,txt_model_car,txt_tip_car,txt_type_car;
+    TextView txt_benzini, txt_doghane, txt_dezeli, txt_hibrid, txt_fuel_car, txt_fuel_type;
+    TextView txt_name_customer, txt_phone_customer, txt_date_birthday, txt_gender, txt_type_customer, txt_date_save, txt_name_car, txt_chasi_car, txt_model_car, txt_tip_car, txt_type_car;
     TextView txt_tile_action_bar;
     ImageView img_back;
     TextView txt_plak_customer1,txt_plak_customer2,txt_plak_customer3,txt_plak_customer4;
@@ -39,58 +38,60 @@ public class InformationCustomersActivity extends AppCompatActivity {
     private Intent intentThatOpenInformationCustomer;
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         G.Activity = this;
         G.context = this;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_information_customers);
+        setContentView(R.layout.activity_information_customer_new);
         G.Activity = this;
         G.context = this;
 
         intentThatOpenInformationCustomer = getIntent();
         FindView();
         onClick();
+        //TODO
         setPlakLayout();
 
-        txt_tile_action_bar.setText("جزئیات خودرو");
-        txt_tile_action_bar.setTypeface(G.Bold);
-        txt_name_customer.setTypeface(G.ExtraBold);
-        txt_name_car.setTypeface(G.ExtraBold);
-        txt_name_car.setTypeface(G.ExtraBold);
-        txt_chasi_car.setTypeface(G.ExtraBold);
-        txt_model_car.setTypeface(G.ExtraBold);
-        txt_type_car.setTypeface(G.ExtraBold);
-        txt_tip_car.setTypeface(G.ExtraBold);
-        txt_name_customer.setText(getIntent().getExtras().getString("firstName") + " " + getIntent().getExtras().getString("lastName"));
-        txt_phone_customer.setText(getIntent().getExtras().getString("phone"));
-        txt_phone_customer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String phone = txt_phone_customer.getText().toString();
-                if (phone.length() >= 10) {
-                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
-                    startActivity(intent);
-                }
-            }
-        });
-        txt_date_birthday.setText(getIntent().getExtras().getString("date_birthday"));
-        if(txt_date_birthday.getText().toString().contains("-")){
-            txt_date_birthday.setText(G.toShamsi(txt_date_birthday.getText().toString()));
-        }
-        txt_fuel_car.setText(getIntent().getExtras().getString("type_fule"));
-        txt_gender.setText(getIntent().getExtras().getString("gender"));
+//        txt_tile_action_bar.setText("جزئیات خودرو");
+//        txt_tile_action_bar.setTypeface(G.Bold);
+//        txt_name_customer.setTypeface(G.ExtraBold);
+//        txt_name_car.setTypeface(G.ExtraBold);
+//        txt_name_car.setTypeface(G.ExtraBold);
+//        txt_chasi_car.setTypeface(G.ExtraBold);
+//        txt_model_car.setTypeface(G.ExtraBold);
+//        txt_type_car.setTypeface(G.ExtraBold);
+//        txt_tip_car.setTypeface(G.ExtraBold);
+//        txt_name_customer.setText(getIntent().getExtras().getString("firstName") + " " + getIntent().getExtras().getString("lastName"));
+//        txt_phone_customer.setText(getIntent().getExtras().getString("phone"));
+//        txt_phone_customer.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String phone = txt_phone_customer.getText().toString();
+//                if (phone.length() >= 10) {
+//                    Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+//                    startActivity(intent);
+//                }
+//            }
+//        });
+//        txt_date_birthday.setText(getIntent().getExtras().getString("date_birthday"));
+//        if (txt_date_birthday.getText().toString().contains("-")) {
+//            txt_date_birthday.setText(G.toShamsi(txt_date_birthday.getText().toString()));
+//        }
+//        txt_fuel_car.setText(getIntent().getExtras().getString("type_fule"));
+//        txt_gender.setText(getIntent().getExtras().getString("gender"));
         //  txt_type_customer.setText(getIntent().getExtras().getString(""));
-        txt_date_save.setText(G.toShamsi(getIntent().getExtras().getString("date_save")));
+//        txt_date_save.setText(G.toShamsi(getIntent().getExtras().getString("date_save")));
         txt_name_car.setText(getIntent().getExtras().getString("nameCar"));
         txt_model_car.setText(getIntent().getExtras().getString("car_model"));
         txt_tip_car.setText(getIntent().getExtras().getString("car_tip"));
-        txt_chasi_car.setText(getIntent().getExtras().getString("id_car"));
+//        txt_chasi_car.setText(getIntent().getExtras().getString("id_car"));
 
-        String plak =  (getIntent().getExtras().getString("plak")+"").replace(" ","").replace("null","");
+        String plak = (getIntent().getExtras().getString("plak") + "").replace(" ", "").replace("null", "");
         if (plak.length() > 3) {
            /* String c1 = plak.substring(0,2);
             String c2 = plak.substring(2,plak.length()-3);
@@ -106,68 +107,71 @@ public class InformationCustomersActivity extends AppCompatActivity {
             txt_plak_customer4.setTypeface(G.ExtraBold);*/
             setPlakBasedViewType(plak, plak_type);
 
-        }else {
+        } else {
             plaks.setVisibility(View.GONE);
         }
 
         if (getIntent().getExtras().getString("type_fule").contains("بنزین")) {
-            txt_benzini.setBackgroundResource(R.drawable.shap_select);
-            txt_doghane.setBackgroundResource(R.drawable.shap_un_select);
-            txt_dezeli.setBackgroundResource(R.drawable.shap_un_select);
-            txt_benzini.setTextColor(getResources().getColor(R.color.text_light));
-            txt_doghane.setTextColor(getResources().getColor(R.color.text_low_dark));
-            txt_dezeli.setTextColor(getResources().getColor(R.color.text_low_dark));
-            txt_hibrid.setBackgroundResource(R.drawable.shap_un_select);
-            txt_hibrid.setTextColor(getResources().getColor(R.color.text_low_dark));
+            txt_fuel_type.setText("بنزین");
+//            txt_benzini.setBackgroundResource(R.drawable.shap_select);
+//            txt_doghane.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_dezeli.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_benzini.setTextColor(getResources().getColor(R.color.text_light));
+//            txt_doghane.setTextColor(getResources().getColor(R.color.text_low_dark));
+//            txt_dezeli.setTextColor(getResources().getColor(R.color.text_low_dark));
+//            txt_hibrid.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_hibrid.setTextColor(getResources().getColor(R.color.text_low_dark));
         } else if (getIntent().getExtras().getString("type_fule").contains("دیزل")) {
-            txt_benzini.setBackgroundResource(R.drawable.shap_un_select);
-            txt_doghane.setBackgroundResource(R.drawable.shap_un_select);
-            txt_dezeli.setBackgroundResource(R.drawable.shap_select);
-            txt_benzini.setTextColor(getResources().getColor(R.color.text_low_dark));
-            txt_doghane.setTextColor(getResources().getColor(R.color.text_low_dark));
-            txt_dezeli.setTextColor(getResources().getColor(R.color.text_light));
-            txt_hibrid.setBackgroundResource(R.drawable.shap_un_select);
-            txt_hibrid.setTextColor(getResources().getColor(R.color.text_low_dark));
+            txt_fuel_type.setText("دیزل");
+//            txt_benzini.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_doghane.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_dezeli.setBackgroundResource(R.drawable.shap_select);
+//            txt_benzini.setTextColor(getResources().getColor(R.color.text_low_dark));
+//            txt_doghane.setTextColor(getResources().getColor(R.color.text_low_dark));
+//            txt_dezeli.setTextColor(getResources().getColor(R.color.text_light));
+//            txt_hibrid.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_hibrid.setTextColor(getResources().getColor(R.color.text_low_dark));
         } else if (getIntent().getExtras().getString("type_fule").contains("دوگان")) {
-            txt_benzini.setBackgroundResource(R.drawable.shap_un_select);
-            txt_doghane.setBackgroundResource(R.drawable.shap_select);
-            txt_dezeli.setBackgroundResource(R.drawable.shap_un_select);
-            txt_benzini.setTextColor(getResources().getColor(R.color.text_low_dark));
-            txt_doghane.setTextColor(getResources().getColor(R.color.text_light));
-            txt_dezeli.setTextColor(getResources().getColor(R.color.text_low_dark));
-            txt_hibrid.setBackgroundResource(R.drawable.shap_un_select);
-            txt_hibrid.setTextColor(getResources().getColor(R.color.text_low_dark));
-        }
-        else if (getIntent().getExtras().getString("type_fule").contains("هیبرید")) {
-            txt_benzini.setBackgroundResource(R.drawable.shap_un_select);
-            txt_hibrid.setBackgroundResource(R.drawable.shap_select);
-            txt_dezeli.setBackgroundResource(R.drawable.shap_un_select);
-            txt_benzini.setTextColor(getResources().getColor(R.color.text_low_dark));
-            txt_hibrid.setTextColor(getResources().getColor(R.color.text_light));
-            txt_dezeli.setTextColor(getResources().getColor(R.color.text_low_dark));
-            txt_doghane.setBackgroundResource(R.drawable.shap_un_select);
-            txt_doghane.setTextColor(getResources().getColor(R.color.text_low_dark));
+            txt_fuel_type.setText("دوگان");
+//            txt_benzini.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_doghane.setBackgroundResource(R.drawable.shap_select);
+//            txt_dezeli.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_benzini.setTextColor(getResources().getColor(R.color.text_low_dark));
+//            txt_doghane.setTextColor(getResources().getColor(R.color.text_light));
+//            txt_dezeli.setTextColor(getResources().getColor(R.color.text_low_dark));
+//            txt_hibrid.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_hibrid.setTextColor(getResources().getColor(R.color.text_low_dark));
+        } else if (getIntent().getExtras().getString("type_fule").contains("هیبرید")) {
+            txt_fuel_type.setText("هیبرید");
+//            txt_benzini.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_hibrid.setBackgroundResource(R.drawable.shap_select);
+//            txt_dezeli.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_benzini.setTextColor(getResources().getColor(R.color.text_low_dark));
+//            txt_hibrid.setTextColor(getResources().getColor(R.color.text_light));
+//            txt_dezeli.setTextColor(getResources().getColor(R.color.text_low_dark));
+//            txt_doghane.setBackgroundResource(R.drawable.shap_un_select);
+//            txt_doghane.setTextColor(getResources().getColor(R.color.text_low_dark));
         }
 
         findViewById(R.id.editCust).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(InformationCustomersActivity.this, AddCustomerActivity.class);
-                intent.putExtra("idCustomer", getIntent().getExtras().getString("idCustomer")+"");
+                Intent intent = new Intent(InformationCustomersActivity.this, AddNewCarActivity.class);
+                intent.putExtra("idCustomer", getIntent().getExtras().getString("idCustomer") + "");
                 intent.putExtra("car_id", getIntent().getExtras().getString("car_id"));
                 intent.putExtra("id_car", getIntent().getExtras().getString("id_car"));
                 intent.putExtra("firstName", getIntent().getExtras().getString("firstName"));
-                intent.putExtra("lastName",getIntent().getExtras().getString("lastName"));
-                intent.putExtra("phone",getIntent().getExtras().getString("phone"));
+                intent.putExtra("lastName", getIntent().getExtras().getString("lastName"));
+                intent.putExtra("phone", getIntent().getExtras().getString("phone"));
                 intent.putExtra("nameCar", getIntent().getExtras().getString("nameCar"));
-                intent.putExtra("plak",getIntent().getExtras().getString("plak"));
-                intent.putExtra(Constants.CAR_PLATE_TYPE,getIntent().getExtras().getString(Constants.CAR_PLATE_TYPE));
+                intent.putExtra("plak", getIntent().getExtras().getString("plak"));
+                intent.putExtra(Constants.CAR_PLATE_TYPE, getIntent().getExtras().getSerializable(Constants.CAR_PLATE_TYPE));
                 intent.putExtra("gender", getIntent().getExtras().getString("gender"));
                 intent.putExtra("date_birthday", getIntent().getExtras().getString("date_birthday"));
                 intent.putExtra("type_fule", getIntent().getExtras().getString("type_fule"));
                 intent.putExtra("date_save", getIntent().getExtras().getString("date_save"));
-                intent.putExtra("type_car",getIntent().getExtras().getString("type_car"));
-                intent.putExtra("car_name_id",getIntent().getExtras().getInt("car_name_id"));
+                intent.putExtra("type_car", getIntent().getExtras().getString("type_car"));
+                intent.putExtra("car_name_id", getIntent().getExtras().getInt("car_name_id"));
                 intent.putExtra("car_tip_id", getIntent().getExtras().getInt("car_tip_id"));
                 intent.putExtra("car_model_id", getIntent().getExtras().getInt("car_model_id"));
                 intent.putExtra("car_company_id", getIntent().getExtras().getInt("car_company_id"));
@@ -177,36 +181,38 @@ public class InformationCustomersActivity extends AppCompatActivity {
             }
         });
     }
+
     private void FindView() {
-        txt_benzini = findViewById(R.id.txt_benzini);
-        txt_doghane = findViewById(R.id.txt_doghane);
-        txt_fuel_car = findViewById(R.id.txt_fuel_car);
-        txt_dezeli = findViewById(R.id.txt_dezeli);
-        txt_hibrid = findViewById(R.id.txt_hibrid);
+//        txt_benzini = findViewById(R.id.txt_benzini);
+//        txt_doghane = findViewById(R.id.txt_doghane);
+//        txt_fuel_car = findViewById(R.id.txt_fuel_car);
+//        txt_dezeli = findViewById(R.id.txt_dezeli);
+//        txt_hibrid = findViewById(R.id.txt_hibrid);
         txt_tile_action_bar = findViewById(R.id.txt_tile_action_bar);
+        txt_fuel_type = findViewById(R.id.txt_fuel_type);
         img_back = findViewById(R.id.img_back);
 
-        txt_name_customer = findViewById(R.id.txt_name_customer);
-        txt_phone_customer = findViewById(R.id.txt_phone_customer);
-        txt_date_birthday = findViewById(R.id.txt_date_birthday);
-        txt_gender = findViewById(R.id.txt_gender);
-        txt_type_customer = findViewById(R.id.txt_type_customer);
-        txt_date_save = findViewById(R.id.txt_date_save);
+//        txt_name_customer = findViewById(R.id.txt_name_customer);
+//        txt_phone_customer = findViewById(R.id.txt_phone_customer);
+//        txt_date_birthday = findViewById(R.id.txt_date_birthday);
+//        txt_gender = findViewById(R.id.txt_gender);
+//        txt_type_customer = findViewById(R.id.txt_type_customer);
+//        txt_date_save = findViewById(R.id.txt_date_save);
         txt_name_car = findViewById(R.id.txt_name_car);
         txt_model_car = findViewById(R.id.txt_model_car);
         txt_tip_car = findViewById(R.id.txt_tip_car);
         txt_type_car = findViewById(R.id.txt_type_car);
-        txt_chasi_car = findViewById(R.id.txt_chasi_car);
-        plaks =findViewById(R.id.plaks);
-        txt_phone_customer =findViewById(R.id.txt_phone_customer);
-        txt_plak_customer1 =findViewById(R.id.txt_plak_customer1);
-        txt_plak_customer2 =findViewById(R.id.txt_plak_customer2);
-        txt_plak_customer3 =findViewById(R.id.txt_plak_customer3);
-        txt_plak_customer4 =findViewById(R.id.txt_plak_customer4);
+//        txt_chasi_car = findViewById(R.id.txt_chasi_car);
+        plaks = findViewById(R.id.plaks);
+//        txt_phone_customer = findViewById(R.id.txt_phone_customer);
+        txt_plak_customer1 = findViewById(R.id.txt_plak_customer1);
+        txt_plak_customer2 = findViewById(R.id.txt_plak_customer2);
+        txt_plak_customer3 = findViewById(R.id.txt_plak_customer3);
+        txt_plak_customer4 = findViewById(R.id.txt_plak_customer4);
 
         ly_plk_general = findViewById(R.id.ly_plk_general);
         ly_plk_taxi = findViewById(R.id.ly_plk_taxi);
-        ly_plk_edari= findViewById(R.id.ly_plk_edari);
+        ly_plk_edari = findViewById(R.id.ly_plk_edari);
         ly_plk_entezami = findViewById(R.id.ly_plk_entezami);
         ly_plk_malolin = findViewById(R.id.ly_plk_malolin);
         ly_plk_azad_new = findViewById(R.id.ly_plk_azad_new);
@@ -224,16 +230,18 @@ public class InformationCustomersActivity extends AppCompatActivity {
         });
 
     }
+
     public void onclickAlamrs(View v) {
         startActivity(new Intent(InformationCustomersActivity.this, AlarmsActivity.class));
     }
+
     @Override
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(context));
     }
 
     private void setPlakLayout() {
-        if(intentThatOpenInformationCustomer.hasExtra(Constants.CAR_PLATE_TYPE)){
+        if (intentThatOpenInformationCustomer.hasExtra(Constants.CAR_PLATE_TYPE)) {
             plak_type = (Constants.PLAK_TYPE) intentThatOpenInformationCustomer.getSerializableExtra(Constants.CAR_PLATE_TYPE);
         }
 
@@ -323,7 +331,7 @@ public class InformationCustomersActivity extends AppCompatActivity {
         // plaks.setVisibility(View.VISIBLE);
 
         List<TextView> textViewsInPlakLayout = findTextsInLayout(plak_layout);
-        Log.d("PLAK", "setPlakBasedViewType:addService: " + plak_layout );
+        Log.d("PLAK", "setPlakBasedViewType:addService: " + plak_layout);
 
         switch (plakType) {
             case PLAK_GENERAL:
@@ -340,8 +348,7 @@ public class InformationCustomersActivity extends AppCompatActivity {
                 textViewsInPlakLayout.get(3).setText(c3);
                 break;
             }
-            case PLAK_MAOLOIN:
-            {
+            case PLAK_MAOLOIN: {
                 String c1 = plak.substring(0, 2);
                 String c2 = plak.substring(2, plak.length() - 3);
                 String c3 = plak.substring(plak.length() - 3, plak.length() - 1);

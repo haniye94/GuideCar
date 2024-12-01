@@ -2,6 +2,7 @@ package com.servicea.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.tabs.TabLayout;
+
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 import com.servicea.activity.ReservePaymentResultActivity;
 import com.servicea.adapter.AdapterTabLayout;
@@ -30,6 +32,8 @@ import org.json.JSONObject;
 
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.servicea.R;
+
+import com.servicea.model.ZarinVerify;
 import com.servicea.retrofit.Api;
 import com.servicea.retrofit.RetrofitClient;
 
@@ -37,6 +41,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,24 +58,24 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-        @Override
-        protected void onNewIntent(Intent intent) {
-            super.onNewIntent(intent);
-            if(intent.hasExtra(Constants.PUSH_NOTIFICATION)){
-                G.Log("push notification1");
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent.hasExtra(Constants.PUSH_NOTIFICATION)) {
+            G.Log("push notification1");
+        }
+        Log.d(TAG, "onNewIntent: " + intent.getData().toString());
+        // Check if this intent is started via custom scheme link
+        if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            Uri uri = intent.getData();
+            // may be some checks with your custom uri
+            String status = uri.getQueryParameter("Status");
+            if (status.equals("OK")) {
+                // Payment was successful
+            } else {
+                // Payment failed
             }
-            Log.d(TAG, "onNewIntent: " + intent.getData().toString());
-            // Check if this intent is started via custom scheme link
-            if (Intent.ACTION_VIEW.equals(intent.getAction())) {
-                Uri uri = intent.getData();
-                // may be some checks with your custom uri
-                String status = uri.getQueryParameter("Status");
-                if (status.equals("OK")) {
-                    // Payment was successful
-                } else {
-                    // Payment failed
-                }
-            }
+        }
     }
 
     @Override
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: ");
-        if(getIntent().hasExtra(Constants.PUSH_NOTIFICATION)){
+        if (getIntent().hasExtra(Constants.PUSH_NOTIFICATION)) {
             G.Log("push notification1");
         }
         G.Activity = this;
@@ -159,7 +165,75 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-      //  cheack_update();
+        getZarinPallVerify();
+        cheack_update();
+    }
+
+    public void getZarinPallVerify() {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(G.zarinPallBaseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SharedPreferences prefs = getSharedPreferences("AUTHORITY_PREFS_NAME", MODE_PRIVATE);
+        String authority = prefs.getString("authority", "");
+        int amount = prefs.getInt("amount", 0);
+        Boolean verified = prefs.getBoolean("verified", false);
+
+        Api apiService = retrofit.create(Api.class);
+        ZarinVerify zarinVerify = new ZarinVerify();
+        zarinVerify.setMerchant_id(G.MerchantID);
+        zarinVerify.setAmount(amount);
+        zarinVerify.setAuthority(authority);
+        Call<ResponseBody> call = apiService.verifyZarinPall(Constants.reserve_service_accept, Constants.reserve_service_content, zarinVerify);
+      if (!verified){ call.enqueue(new Callback<ResponseBody>() {
+          @Override
+          public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+              String result = G.getResult(response);
+        /*        if (result.equals("") && !verified) {
+                    try {
+                        result = G.getErrorResult(response);
+                        JSONObject errorResponse = new JSONObject(result);
+                        JSONObject errors = errorResponse.getJSONObject("errors");
+                        int code = errors.getInt("code");
+                        G.Log("zarin Error code = " + code);
+                        G.saveAuthority(authority, amount, true);
+                        startActivity(new Intent(MainActivity.this, ReservePaymentResultActivity.class).putExtra(Constants.reserve_payment_result, false));
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {*/
+              try {
+                  JSONObject verifyResponse = new JSONObject(result);
+                  JSONObject data = verifyResponse.getJSONObject("data");
+                  String message = data.getString("message");
+                  int code = data.getInt("code");
+
+                  if (code == 100) {
+                      changeCharge(G.preference.getInt("amount_charge", 0));
+                      if (message.equals("Paid")) {
+                          G.saveAuthority(authority, amount, true);
+                          startActivity(new Intent(MainActivity.this, ReservePaymentResultActivity.class).putExtra(Constants.reserve_payment_result, true));
+                      }
+                  }
+                  if (code == 101) {
+                  } else {
+                      startActivity(new Intent(MainActivity.this, ReservePaymentResultActivity.class).putExtra(Constants.reserve_payment_result, true));
+                  }
+              } catch (JSONException e) {
+//                    throw new RuntimeException(e);
+              }
+          }
+
+//            }
+
+          @Override
+          public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+          }
+      });}
+
     }
 
     private void setupTabIcons() {
@@ -285,6 +359,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     public void cheack_update() {
         Api api = RetrofitClient.createService(Api.class, G.api_username, G.api_password);
         Call<ResponseBody> request = api.check_update();

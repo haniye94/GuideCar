@@ -90,7 +90,7 @@ public class CreateTextMessageActivity extends AppCompatActivity {
         btn_save_message = findViewById(R.id.btn_save_message);
         edt_text_msg = findViewById(R.id.edt_text_msg);
         edt_title_msg = findViewById(R.id.edt_title_msg);
-        ly_empty = findViewById(R.id.ly_empty);
+        ly_empty = findViewById(R.id.ll_empty);
     }
 
     private void onClick() {

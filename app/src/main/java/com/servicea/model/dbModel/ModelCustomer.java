@@ -21,6 +21,11 @@ public class ModelCustomer implements Serializable {
     String date_save_customer;
     String car_tip;
     String car_model;
+    private String product_group_name;
+    private String product_due_date;
+    private String car_kilometer;
+
+    private String car_image;
 
     public String getCar_tip() {
         return car_tip;
@@ -198,5 +203,37 @@ public class ModelCustomer implements Serializable {
 
     public void setCar_company_id(int car_company_id) {
         this.car_company_id = car_company_id;
+    }
+
+    public String getCar_image() {
+        return car_image;
+    }
+
+    public void setCar_image(String car_image) {
+        this.car_image = car_image;
+    }
+
+    public String getCar_kilometer() {
+        return car_kilometer;
+    }
+
+    public void setCar_kilometer(String car_kilometer) {
+        this.car_kilometer = car_kilometer;
+    }
+
+    public String getProduct_group_name() {
+        return product_group_name;
+    }
+
+    public void setProduct_group_name(String product_group_name) {
+        this.product_group_name = product_group_name;
+    }
+
+    public String getProduct_due_date() {
+        return product_due_date;
+    }
+
+    public void setProduct_due_date(String product_due_date) {
+        this.product_due_date = product_due_date;
     }
 }

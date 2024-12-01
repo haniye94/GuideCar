@@ -69,7 +69,7 @@
 
 
     <LinearLayout
-        android:id="@+id/ly_empty"
+        android:id="@+id/ll_empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -91,7 +91,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
             android:text= "هیچ گروه کالایی انتخاب نشده است. لطفا ابتدا گروه کالای خود را در صفحه تنظیمات انتخاب کنید"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="12dp" />
     </LinearLayout>
 

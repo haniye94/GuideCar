@@ -86,8 +86,8 @@ public class ListServiceCenterActivity extends AppCompatActivity {
 
     private int SelectedAddressID;
 
-    private String SelectedAddressLat;
-    private String SelectedAddressLng;
+    private String SelectedAddressLat = "0";
+    private String SelectedAddressLng ;
 
     private final String centerScore = "0";
 
@@ -182,7 +182,6 @@ public class ListServiceCenterActivity extends AppCompatActivity {
 
             }
         });
-        swipeRefreshLayout = findViewById(R.id.swipe);
         swipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.button));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -361,6 +360,7 @@ public class ListServiceCenterActivity extends AppCompatActivity {
         img_back = findViewById(R.id.img_back);
         img_add_message = findViewById(R.id.img_add_message);
         checkAll = findViewById(R.id.checkAll);
+        swipeRefreshLayout = findViewById(R.id.swipe);
 
         recycle_produce_group = findViewById(R.id.recycle_produce_group);
         count = findViewById(R.id.count);
@@ -405,7 +405,7 @@ public class ListServiceCenterActivity extends AppCompatActivity {
 
                 if (SelectedAddressID > 0 && SelectedAddressTitle.length() >= 0) {
                     txt_tile_action_bar.setText(SelectedAddressTitle + " ▼");
-                    txt_tile_action_bar.setTextDirection(View.TEXT_DIRECTION_LOCALE);
+//                    txt_tile_action_bar.setTextDirection(View.TEXT_DIRECTION_LOCALE);
                 } else {
                     txt_tile_action_bar.setText("تعیین آدرس ▼");
                     Toast.makeText(ListServiceCenterActivity.this, "ابتدا آدرس مورد نظر خود را انتخاب نمایید", Toast.LENGTH_SHORT).show();
@@ -583,8 +583,7 @@ public class ListServiceCenterActivity extends AppCompatActivity {
 
             }
 
-        }
-        else stopShimmer();
+        } else stopShimmer();
     }
 
     public void getCentersScore() {

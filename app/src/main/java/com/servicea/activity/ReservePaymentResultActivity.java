@@ -194,7 +194,7 @@ public class ReservePaymentResultActivity extends AppCompatActivity {
         txt_tile_action_bar.setTypeface(G.Bold);
         img_back = findViewById(R.id.img_back);
 
-        RelativeLayout rv_toolbar_alarms = findViewById(R.id.alarms);
+        RelativeLayout rv_toolbar_alarms = findViewById(R.id.ic_notif);
         rv_toolbar_alarms.setVisibility(View.INVISIBLE);
 
         txt_payment_result = findViewById(R.id.txt_payment_result);

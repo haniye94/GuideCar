@@ -114,7 +114,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="17dp"
                             android:text="13"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="15dp" />
 
 
@@ -131,7 +131,7 @@
                             android:layout_height="wrap_content"
 
                             android:text="ق"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="15dp" />
 
                         <TextView
@@ -147,7 +147,7 @@
                             android:layout_height="wrap_content"
 
                             android:text="412"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="15dp" />
 
                         <TextView
@@ -165,7 +165,7 @@
                             android:layout_marginTop="3dp"
                             android:layout_marginRight="4dp"
                             android:text="18"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="15dp" />
                     </LinearLayout>
 

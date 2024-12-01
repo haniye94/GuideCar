@@ -11,8 +11,10 @@
 //import android.os.Bundle;
 //import android.util.Log;
 //
+//import com.google.zxing.Result;
 //import com.servicea.app.G;
 //
+//import me.dm7.barcodescanner.zxing.ZXingScannerView;
 //
 //
 //    public class SimpleScannerActivity extends Activity implements ZXingScannerView.ResultHandler {

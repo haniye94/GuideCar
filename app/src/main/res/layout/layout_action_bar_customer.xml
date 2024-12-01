@@ -9,7 +9,7 @@
     android:textDirection="rtl">
 
     <RelativeLayout
-        android:id="@+id/alarms"
+        android:id="@+id/ic_notif"
         android:layout_width="wrap_content"
         android:onClick="onclickAlamrs"
         android:layout_height="wrap_content"
@@ -17,8 +17,8 @@
         android:layout_marginRight="10dp">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/ic_back_notif_width"
+            android:layout_height="@dimen/ic_back_notif_height"
             android:src="@drawable/ic_notifications" />
 
         <LinearLayout

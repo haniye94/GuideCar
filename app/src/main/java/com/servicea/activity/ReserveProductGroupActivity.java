@@ -1,31 +1,20 @@
 package com.servicea.activity;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
+import static com.servicea.app.G.preference;
+
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,33 +24,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.servicea.activities.AlarmsActivity;
-import com.servicea.activities.CustomerActivity;
-import com.servicea.activities.MainActivity;
-import com.servicea.activities.ServiceCenterActivity;
-import com.servicea.adapter.AdapterFilterRadioButton;
-import com.servicea.adapter.AdapterJobCategory;
-import com.servicea.adapter.AdapterListDetectGroup;
-import com.servicea.adapter.AdapterListProduceGroup;
 import com.servicea.adapter.AdapterReserveProductGroup;
-import com.servicea.app.CalendarTool;
 import com.servicea.app.Constants;
 import com.servicea.app.DataBaseHelper;
 import com.servicea.app.G;
 import com.servicea.app.PreferenceUtil;
-import com.servicea.app.RecyclerItemClickListener;
-import com.servicea.model.ModelJobCategory;
-import com.servicea.model.ModelML;
-import com.servicea.model.ModelProduct;
+import com.servicea.model.SendZarinInfo;
 import com.servicea.model.SliderItem;
-import com.servicea.model.dbModel.ModelCustomer;
-import com.servicea.model.dbModel.ModelKhadamat;
+import com.servicea.model.ZarinMetadata;
 import com.servicea.model.dbModel.ModelProduceGroup;
-import com.servicea.model.dbModel.ModelSaveKhadamat;
 import com.servicea.model.dbModel.ReserveModel;
 import com.servicea.retrofit.Api;
 import com.servicea.retrofit.RetrofitClient;
@@ -72,15 +47,16 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 import ir.servicea.R;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReserveProductGroupActivity extends AppCompatActivity {
     private TextView txt_tile_action_bar, txt_product_cost, txt_rial, txt_product_cost_message, txt_final_cost, txt_choose_product_group;
@@ -124,6 +100,8 @@ public class ReserveProductGroupActivity extends AppCompatActivity {
     private ProgressBar pb_loading;
 
     private static final String TAG = "ReserveProductGroupActi";
+
+    private String authority;
 
     public void onclickAlamrs(View v) {
         startActivity(new Intent(ReserveProductGroupActivity.this, AlarmsActivity.class));
@@ -267,7 +245,8 @@ public class ReserveProductGroupActivity extends AppCompatActivity {
             if (finalCost == 0) {
                 Toast.makeText(ReserveProductGroupActivity.this, "حداقل یک گروه شغلی را انتخاب نمایید", Toast.LENGTH_SHORT).show();
             } else {
-                requestPayment(finalCost);
+//                requestPayment(finalCost);
+                sendZarinPallInfo(finalCost);
             }
         });
     }
@@ -411,7 +390,7 @@ public class ReserveProductGroupActivity extends AppCompatActivity {
                                 int change_wage_percent = obj.getInt("percent");
                                 int final_change_wage = 0;
                                 if (change_wage.length() > 0) {
-                                    final_change_wage = (Integer.parseInt(change_wage) * change_wage_percent)/100 + Integer.parseInt(change_wage);
+                                    final_change_wage = (Integer.parseInt(change_wage) * change_wage_percent) / 100 + Integer.parseInt(change_wage);
                                 }
                                 boolean send_msg = send_msgx.contains("1");
 //                                check = checkProductGroup(id);
@@ -719,6 +698,61 @@ public class ReserveProductGroupActivity extends AppCompatActivity {
 
     }
 
+    public void sendZarinPallInfo(int amount) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(G.zarinPallBaseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        Api apiService = retrofit.create(Api.class);
+        ZarinMetadata zarinMetadata = new ZarinMetadata();
+
+        zarinMetadata.setEmail("imannamix@gmail.com");
+        zarinMetadata.setMobile(G.preference.getString("phone_user", ""));
+        SendZarinInfo sendZarinInfo = new SendZarinInfo();
+        sendZarinInfo.setMerchant_id(G.MerchantID);
+        sendZarinInfo.setCurrency("IRR");
+        sendZarinInfo.setAmount(amount);
+        sendZarinInfo.setZarinMetadata(zarinMetadata);
+        sendZarinInfo.setDescription(Constants.reserve_service);
+        sendZarinInfo.setCallback_url("paymentzarrindriver://app"/*Constants.reserve_service_call_back*/);
+
+
+        Call<ResponseBody> call = apiService.sendZarinPallInfo(Constants.reserve_service_accept, Constants.reserve_service_content, sendZarinInfo);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                String result = G.getResult(response);
+                try {
+                    JSONObject getInfoResponse = new JSONObject(result);
+                    JSONObject data = getInfoResponse.getJSONObject("data");
+                    authority = data.getString("authority");
+                    G.saveAuthority(authority, amount,false);
+                    String url = Constants.reserve_service_payment_base_url + authority;
+
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                    startActivity(browserIntent);
+
+
+                } catch (JSONException e) {
+                    G.toast("مشکل در درگاه پرداخت!!");
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+
+
+    }
 
     private void saveServiceDetail() {
         String created_at = G.converToEn(DateFormat.format("yyyy-MM-dd HH:mm:ss", new Date()).toString());

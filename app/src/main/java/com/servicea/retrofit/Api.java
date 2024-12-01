@@ -1,20 +1,23 @@
 package com.servicea.retrofit;
 
 
+import com.servicea.model.SendZarinInfo;
+import com.servicea.model.ZarinVerify;
+
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface Api {
-   // @GET("api.php/records/job_categories?filter=status,gt,0")
+    // @GET("api.php/records/job_categories?filter=status,gt,0")
     @GET("api.php/records/job_categories")
     Call<ResponseBody> getJob_categories();
 
@@ -31,13 +34,13 @@ public interface Api {
     Call<ResponseBody> getGroupGender(@Query("d_id") String d_id);
 
     @GET("api-reports.php?action=getReportTiming")
-    Call<ResponseBody> getReportTiming(@Query("user_id") String user_id,@Query("size") String size);
+    Call<ResponseBody> getReportTiming(@Query("user_id") String user_id, @Query("size") String size);
 
     @GET("api-reports.php?action=getMapSearch")
-    Call<ResponseBody> getMapSearch(@Query("lat") String lat,@Query("lng") String lng,@Query("key") String key);
+    Call<ResponseBody> getMapSearch(@Query("lat") String lat, @Query("lng") String lng, @Query("key") String key);
 
     @GET("api-reports.php?action=getMapAddress")
-    Call<ResponseBody> getMapAddress(@Query("lat") String lat,@Query("lng") String lng);
+    Call<ResponseBody> getMapAddress(@Query("lat") String lat, @Query("lng") String lng);
 
     @GET("api-reports.php?action=getUsersAge")
     Call<ResponseBody> getUsersAge(@Query("d_id") String d_id);
@@ -50,9 +53,10 @@ public interface Api {
 
     @POST("api-reports.php?action=getCentersScore")
     Call<ResponseBody> getCentersScore(@Body RequestBody body);
-   /* @GET("api-sms.php/")
-    Call<ResponseBody> sendCode(@Query("code") String code, @Query("to") String to);
-*/
+
+    /* @GET("api-sms.php/")
+     Call<ResponseBody> sendCode(@Query("code") String code, @Query("to") String to);
+ */
     @GET("api-sms-driver.php/")
     Call<ResponseBody> sendCode(@Query("code") String code, @Query("to") String to);
 
@@ -66,15 +70,15 @@ public interface Api {
     Call<ResponseBody> getProfile(@Query("filter") String filter);
 
 
-//    @GET("api-reports.php?action=getNearServiceCenter&offset=0&limit=10")
+    //    @GET("api-reports.php?action=getNearServiceCenter&offset=0&limit=10")
     @GET("api-reports.php?action=getNearServiceCenter")
-    Call<ResponseBody> getNearServiceCenter(@Query("job_category_id") String jobCategoryId,@Query("filter") String filter,@Query("lat") String lat, @Query("lng") String lng, @Query("distance") String filter1);
+    Call<ResponseBody> getNearServiceCenter(@Query("job_category_id") String jobCategoryId, @Query("filter") String filter, @Query("lat") String lat, @Query("lng") String lng, @Query("distance") String filter1);
 
-     @GET("api.php/records/services_center?join=users&join=job_categories&filter=deleted_at,is,NULL&filter=status,eq,1&size=1")
-    Call<ResponseBody> getServiceCenter(@Query("filter") String filter, @Query("filter") String filter1,  @Query("size") int size);
+    @GET("api.php/records/services_center?join=users&join=job_categories&filter=deleted_at,is,NULL&filter=status,eq,1&size=1")
+    Call<ResponseBody> getServiceCenter(@Query("filter") String filter, @Query("filter") String filter1, @Query("size") int size);
 
     @GET("api-reports.php?action=getBestCentersByCity")
-    Call<ResponseBody> getBestServiceCenterByCity(@Query("job_category_id") String job_category_id, @Query("city_id") String city_id,  @Query("size") int size,  @Query("offset") int offset);
+    Call<ResponseBody> getBestServiceCenterByCity(@Query("job_category_id") String job_category_id, @Query("city_id") String city_id, @Query("size") int size, @Query("offset") int offset);
 
     @GET("https://api.autoservicea.ir/api.php/records/service_available?join=job_services&filter=deleted_at,is,NULL&filter=status,eq,1")
     Call<ResponseBody> getServicesServiceCenter(@Query("filter") String filter);
@@ -121,7 +125,7 @@ public interface Api {
 
     @GET("api.php/records/customers?filter=cust_deleted_at,is,NULL&order=cust_id,desc")
 //&filter=center_id,gt,0
-    Call<ResponseBody> listCustomer(@Query("filter") String filter,@Query("page") int page);
+    Call<ResponseBody> listCustomer(@Query("filter") String filter, @Query("page") int page);
 
     @GET("api.php/records/customers?filter=cust_deleted_at,is,NULL&order=cust_id,desc&filter=center_id,gt,0")
     Call<ResponseBody> searchCustomer(@Query("filter") String filter, @Query("filter1") String filter1, @Query("filter2") String filter2, @Query("filter3") String filter3);
@@ -148,7 +152,7 @@ public interface Api {
     Call<ResponseBody> manageMessage();
 
     @GET("api.php/records/msg_log_details")
-    Call<ResponseBody> msg_log(@Query("filter") String filter, @Query("filter1") String filter1, @Query("filter2") String filter2,@Query("order") String order);
+    Call<ResponseBody> msg_log(@Query("filter") String filter, @Query("filter1") String filter1, @Query("filter2") String filter2, @Query("order") String order);
 
     @GET("api.php/records/cars_name?join=cars_company&order=id,desc")
     Call<ResponseBody> cars_name();
@@ -193,13 +197,13 @@ public interface Api {
 
 
     @GET("api.php/records/servicess?filter=deleted_at,is,NULL&order=service_id,desc")
-    Call<ResponseBody> listService(@Query("filter") String filter,@Query("page") int page);
+    Call<ResponseBody> listService(@Query("filter") String filter, @Query("page") int page);
 
     @GET("api.php/records/servicess?filter=deleted_at,is,NULL&order=service_id,desc")
-    Call<ResponseBody> searchService(@Query("filter") String filter, @Query("filter1") String filter1,@Query("page") int page);
+    Call<ResponseBody> searchService(@Query("filter") String filter, @Query("filter1") String filter1, @Query("page") int page);
 
     @GET("api.php/records/servicess?filter=deleted_at,is,NULL&order=service_id,desc&size=1")
-    Call<ResponseBody> queueService(@Query("filter") String filter,@Query("filter") String filterx, @Query("filter1") String filter1);
+    Call<ResponseBody> queueService(@Query("filter") String filter, @Query("filter") String filterx, @Query("filter1") String filter1);
 
 
     @PUT("api.php/records/services/{id}")
@@ -207,8 +211,10 @@ public interface Api {
 
     @GET("api.php/records/slider?filter=place_of_use,eq,1&filter=status,eq,1")
     Call<ResponseBody> getSlider();
+
     @GET("api.php/records/provinces?filter=status,gt,0")
     Call<ResponseBody> getProvince();
+
     @GET("api.php/records/cities?filter=status,gt,0")
     Call<ResponseBody> getCity(@Query("filter") String filter);
 
@@ -248,10 +254,11 @@ public interface Api {
     Call<ResponseBody> addServicesPayDetail(@Body RequestBody body);
 
     @GET("api.php/records/services_timing_details?include=id")
-    Call<ResponseBody> getServicesTiming(@Query("filter") String filter,@Query("filter") String filter2,@Query("filter") String filter3);
+    Call<ResponseBody> getServicesTiming(@Query("filter") String filter, @Query("filter") String filter2, @Query("filter") String filter3);
 
     @DELETE("api.php/records/services_timing/{id}")
     Call<ResponseBody> deleteServicesTiming(@Path("id") String id);
+
     @POST("api.php/records/services_timing")
     Call<ResponseBody> addServicesTiming(@Body RequestBody body);
 
@@ -280,8 +287,13 @@ public interface Api {
     @DELETE("api.php/records/service_center_msg_prov/{id}")
     Call<ResponseBody> deleteServiceCenterMsgProv(@Path("id") String id);
 
+    @GET("api.php/records/cars_name")
+    Call<ResponseBody> getProductGallery();
+    @GET("api.php/records/average_function")
+    Call<ResponseBody> getProductKilometer();
+
     @GET("api-smstext.php/")
-    Call<ResponseBody> sendSMSProv(@Query("text") String text, @Query("to") String to, @Query("d_id") String d_id,@Query("msg_id") String msg_id);
+    Call<ResponseBody> sendSMSProv(@Query("text") String text, @Query("to") String to, @Query("d_id") String d_id, @Query("msg_id") String msg_id);
 
 
     @POST("api.php/records/ticket")
@@ -289,13 +301,14 @@ public interface Api {
 
 
     @GET("api.php/records/ticket")
-    Call<ResponseBody> getTicket(@Query("filter") String filter, @Query("filter1") String filter1, @Query("filter2") String filter2,@Query("order") String order);
+    Call<ResponseBody> getTicket(@Query("filter") String filter, @Query("filter1") String filter1, @Query("filter2") String filter2, @Query("order") String order);
 
     @GET("api-reports.php?action=getNotificationsList")
     Call<ResponseBody> getNotificationsList(@Query("user_id") String user_id, @Query("key") String key);
 
     @GET("api.php/records/cars_company?order=id,asc")
     Call<ResponseBody> cars_company();
+
     @GET("api.php/records/cars_name?order=id,asc")
     Call<ResponseBody> cars_name(@Query("filter") String filter);
 
@@ -305,11 +318,12 @@ public interface Api {
 
     @PUT("api.php/records/user_addresses/{id}")
     Call<ResponseBody> editAddress(@Path("id") String id, @Body RequestBody bod);
-   /* @GET("api.php/records/user_addresses?filter=deleted_at,is,NULL&filter=status,gt,0&order=id,desc")
-    Call<ResponseBody> getAddresses(@Query("filter") String filter,@Query("filter") String filter2);
-    */
+
+    /* @GET("api.php/records/user_addresses?filter=deleted_at,is,NULL&filter=status,gt,0&order=id,desc")
+     Call<ResponseBody> getAddresses(@Query("filter") String filter,@Query("filter") String filter2);
+     */
     @GET("api-reports.php?action=getUsersAddress")
-    Call<ResponseBody> getAddresses(@Query("user_id") String filter,@Query("address") String filter2);
+    Call<ResponseBody> getAddresses(@Query("user_id") String filter, @Query("address") String filter2);
 
     @DELETE("api.php/records/user_addresses/{id}")
     Call<ResponseBody> deleteAddress(@Path("id") String id);
@@ -322,7 +336,7 @@ public interface Api {
     Call<ResponseBody> updateServiceScoreState(@Path("id") String id, @Body RequestBody body);
 
     @GET("api.php/records/comments_service_center?filter=deleted_at,is,NULL&filter=status,gt,0&join=users&order=id,desc")
-    Call<ResponseBody> getComments(@Query("filter") String filter,@Query("size") String size);
+    Call<ResponseBody> getComments(@Query("filter") String filter, @Query("size") String size);
 
     @GET("api.php/records/comments_service_center?include=score")
     Call<ResponseBody> getScore(@Query("filter") String filter);
@@ -341,6 +355,7 @@ public interface Api {
 
     @POST("api.php/records/notification_details")
     Call<ResponseBody> addNotificationDetails(@Body RequestBody body);
+
     @POST("api.php/records/service_request_details")
     Call<ResponseBody> addServiceRequestDetail(@Body RequestBody body);
 
@@ -352,5 +367,11 @@ public interface Api {
 
     @PUT("api.php/records/service_requests/{id}")
     Call<ResponseBody> updateReserve(@Path("id") String id, @Body RequestBody body);
+
+    @POST("/pg/v4/payment/request.json")
+    Call<ResponseBody> sendZarinPallInfo(@Header("accept") String accept, @Header("content-type") String content, @Body SendZarinInfo sendZarinInfo);
+
+    @POST("/pg/v4/payment/verify.json")
+    Call<ResponseBody> verifyZarinPall(@Header("accept") String accept, @Header("content-type") String content, @Body ZarinVerify zarinVerify);
 
 }

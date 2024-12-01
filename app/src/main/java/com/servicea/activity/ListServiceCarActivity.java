@@ -436,7 +436,7 @@ public class ListServiceCarActivity extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                           ShowCase();
+//                           ShowCase();
                         }
                     }, 1200);
 

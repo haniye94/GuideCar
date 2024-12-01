@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.servicea.activities.AddNewCarActivity;
+import com.servicea.activities.CarListActivity;
 import com.servicea.adapter.AdapterJobCategory;
 import com.servicea.adapter.GridSpacingItemDecoration;
 import com.servicea.app.Constants;
@@ -227,6 +229,14 @@ public class JobCategoriesActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(JobCategoriesActivity.this, CarListActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }

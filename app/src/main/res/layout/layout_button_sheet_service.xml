@@ -47,7 +47,7 @@
             android:layout_marginRight="10dp"
             android:lineSpacingExtra="-0.01dp"
             android:text="نمایش اطلاعات سرویس"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="13dp" />
 
     </LinearLayout>
@@ -82,7 +82,7 @@
             android:layout_marginRight="10dp"
             android:lineSpacingExtra="-0.01dp"
             android:text="ویرایش این سرویس"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="13dp" />
 
     </LinearLayout>
@@ -119,7 +119,7 @@
             android:layout_marginRight="10dp"
             android:lineSpacingExtra="-0.01dp"
             android:text="حذف این سرویس"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="13dp" />
 
     </LinearLayout>

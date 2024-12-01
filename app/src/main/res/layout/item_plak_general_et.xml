@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ly_plak"
     android:layout_width="wrap_content"
     android:layout_height="55dp"
     android:layout_gravity="center"
     android:gravity="center"
+    android:layoutDirection="ltr"
     android:orientation="horizontal"
     android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:layoutDirection="ltr">
+    android:paddingRight="10dp">
 
     <EditText
         android:id="@+id/edt1"
@@ -19,11 +20,12 @@
         android:focusableInTouchMode="true"
         android:focusedByDefault="true"
         android:gravity="center|bottom"
+        android:hint="1"
         android:inputType="number"
         android:maxLength="1"
         android:textColor="@color/text_low_dark"
         android:textSize="25dp"
-        android:hint="1"/>
+        app:backgroundTint="@color/light_gray" />
 
 
     <EditText
@@ -32,11 +34,13 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:gravity="center|bottom"
+        android:hint="2"
         android:inputType="number"
+
         android:maxLength="1"
         android:textColor="@color/text_low_dark"
         android:textSize="25dp"
-        android:hint="2"/>
+        app:backgroundTint="@color/light_gray" />
 
     <EditText
         android:id="@+id/edt3"
@@ -45,11 +49,12 @@
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         android:gravity="center|bottom"
+        android:hint="ب"
         android:inputType="text"
         android:maxLength="1"
         android:textColor="@color/text_low_dark"
         android:textSize="25dp"
-        android:hint="ب"/>
+        app:backgroundTint="@color/light_gray" />
 
 
     <EditText
@@ -58,22 +63,24 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:gravity="center|bottom"
+        android:hint="4"
         android:inputType="number"
         android:maxLength="1"
         android:textColor="@color/text_low_dark"
         android:textSize="25dp"
-        android:hint="4"/>
+        app:backgroundTint="@color/light_gray" />
 
     <EditText
         android:id="@+id/edt5"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:gravity="center|bottom"
+        android:hint="5"
         android:inputType="number"
         android:maxLength="1"
         android:textColor="@color/text_low_dark"
         android:textSize="25dp"
-        android:hint="5"/>
+        app:backgroundTint="@color/light_gray" />
 
     <EditText
         android:id="@+id/edt6"
@@ -81,15 +88,16 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:gravity="center|bottom"
+        android:hint="6"
         android:inputType="number"
         android:maxLength="1"
         android:textColor="@color/text_low_dark"
         android:textSize="25dp"
-        android:hint="6"/>
+        app:backgroundTint="@color/light_gray" />
 
     <TextView
         android:layout_width="1dp"
-        android:layout_height="match_parent"
+        android:layout_height="25dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:background="@color/border" />
@@ -100,21 +108,23 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:gravity="center|bottom"
+        android:hint="1"
         android:inputType="number"
         android:maxLength="1"
         android:textColor="@color/text_low_dark"
         android:textSize="25dp"
-        android:hint="1"/>
+        app:backgroundTint="@color/light_gray" />
 
     <EditText
         android:id="@+id/edt8"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:gravity="center|bottom"
+        android:hint="1"
         android:inputType="number"
         android:maxLength="1"
         android:textColor="@color/text_low_dark"
         android:textSize="25dp"
-        android:hint="1"/>
+        app:backgroundTint="@color/light_gray" />
 
 </LinearLayout>

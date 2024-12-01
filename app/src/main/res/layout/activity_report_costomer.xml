@@ -238,7 +238,7 @@
                             android:gravity="center"
                             android:lineSpacingExtra="-0.2dp"
                             android:text="مرد"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="12dp" />
 
                         <TextView
@@ -269,7 +269,7 @@
                             android:gravity="center"
                             android:lineSpacingExtra="-0.2dp"
                             android:text="زن"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/old_gray"
                             android:textSize="12dp" />
 
                         <TextView

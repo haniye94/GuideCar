@@ -47,8 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="17dp"
             android:text="123456"
-            android:textColor="@color/gray"
-            android:textSize="15sp" />
+            android:layout_marginTop="2dp"
+
+            android:textColor="@color/old_gray"
+            android:textSize="@dimen/big_font" />
 
         <View
             android:id="@+id/divid2"
@@ -63,8 +65,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="66"
-            android:textColor="@color/gray"
-            android:textSize="15sp" />
+            android:layout_marginTop="2dp"
+
+            android:textColor="@color/old_gray"
+            android:textSize="@dimen/big_font" />
 
         <View
             android:id="@+id/divid7"
@@ -73,7 +77,6 @@
             android:layout_marginStart="2dp"
             android:layout_marginEnd="2dp" />
     </LinearLayout>
-gvb n
     <LinearLayout
         android:id="@+id/row2"
         android:layout_width="0dp"
@@ -100,8 +103,9 @@ gvb n
             android:layout_height="wrap_content"
             android:layout_marginStart="17dp"
             android:text="123456"
-            android:textColor="@color/gray"
-            android:textSize="14sp" />
+            android:layout_marginTop="2dp"
+            android:textColor="@color/old_gray"
+            android:textSize="@dimen/big_font" />
 
         <View
             android:id="@+id/divid4"
@@ -116,8 +120,10 @@ gvb n
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="66"
-            android:textColor="@color/gray"
-            android:textSize="14sp" />
+            android:layout_marginTop="2dp"
+
+            android:textColor="@color/old_gray"
+            android:textSize="@dimen/big_font" />
 
         <View
             android:id="@+id/divid5"

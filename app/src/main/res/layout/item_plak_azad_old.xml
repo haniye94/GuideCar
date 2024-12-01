@@ -31,7 +31,7 @@
         android:layout_marginTop="12dp"
         android:text="کیش"
         android:textColor="@color/white"
-        android:textSize="15dp"
+        android:textSize="@dimen/big_font"
         />
 
 
@@ -57,8 +57,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="17dp"
             android:text="123456"
-            android:textColor="@color/gray"
-            android:textSize="15dp" />
+            android:layout_marginTop="2dp"
+
+            android:textColor="@color/old_gray"
+            android:textSize="@dimen/big_font" />
 
         <View
             android:id="@+id/divid2"
@@ -98,8 +100,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="123456"
-            android:textColor="@color/gray"
-            android:textSize="15dp" />
+            android:layout_marginTop="2dp"
+
+            android:textColor="@color/old_gray"
+            android:textSize="@dimen/big_font" />
 
         <View
             android:id="@+id/divid4"
@@ -120,7 +124,7 @@
         android:layout_marginTop="12dp"
         android:text=""
         android:textColor="@color/white"
-        android:textSize="15dp"
+        android:textSize="@dimen/big_font"
         android:layout_centerVertical="true"
         android:visibility="gone"
         />

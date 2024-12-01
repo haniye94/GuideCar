@@ -102,7 +102,7 @@
             android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:id="@+id/ly_empty"
+            android:id="@+id/ll_empty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

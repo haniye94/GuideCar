@@ -7,8 +7,8 @@
     <color name="teal_700">#02B4FF</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gray">#333333</color>
-    <color name="mdtp_light_gray">#FFEB3B</color>
+    <color name="old_gray">#333333</color>
+    <color name="mdtp_light_gray">#5E5A5A</color>
 
     <color name="background">#FAFAFA</color>
     <color name="border">#D5D5D5</color>
@@ -43,5 +43,18 @@
     <color name="dark_text_color_shade2">#4d4d4d</color>
 
     <color name="shimmer_placeholder">#dddddd</color>
+
+    //added by haniye
+    <color name="light_gray">#D5D2D2</color>
+    <color name="blue">#0BB6FE</color>
+    <color name="orange">#EBAF20</color>
+    <color name="red">#DC0000</color>
+    <color name="background_border">#14000000</color>
+    <color name="red_text">#FF0000</color>
+    <color name="text_gray_color">#646464</color>
+    <color name="text_dark_gray_color">#484848</color>
+    <color name="gray">#646464</color>
+    <color name="color_transparent">@android:color/transparent</color>
+
 
 </resources>

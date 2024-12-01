@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.servicea.activities.CustomerActivity;
 import com.servicea.activities.LastServiseDoneActivity;
 import com.servicea.activities.WebViewActivity;
+import com.servicea.activity.ListCarActivity;
 import com.servicea.app.G;
 import com.servicea.model.ModelItemMain;
 
@@ -81,7 +82,7 @@ public class AdapterListGridMain extends RecyclerView.Adapter<AdapterListGridMai
                         G.toast("بزودی");
                         break;
                     case 5:
-                        context.startActivity(new Intent(context, CustomerActivity.class));
+                        context.startActivity(new Intent(context, ListCarActivity.class));
 
                         break;
                     case 6:

@@ -48,7 +48,7 @@
             android:letterSpacing="-0.1"
             android:padding="5dp"
             android:text="لطفا کد را وارد کنید"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="14dp"
             android:textStyle="bold" />
 
@@ -78,7 +78,7 @@
             android:gravity="center"
             android:padding="5dp"
             android:text="00:00"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="14dp"
             android:layout_marginTop="20dp"
             />

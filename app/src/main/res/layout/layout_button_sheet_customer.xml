@@ -31,7 +31,7 @@
 
             android:lineSpacingExtra="-0.01dp"
             android:text="محمود جعفری همدانی"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="17dp" />
         <TextView
 
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:lineSpacingExtra="-0.01dp"
             android:text="  _  "
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="17dp" />
         <TextView
             android:lineSpacingExtra="-0.01dp"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
 
             android:text="خودرو 206"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="17dp" />
     </LinearLayout>
 
@@ -83,7 +83,7 @@
             android:layout_marginRight="10dp"
             android:lineSpacingExtra="-0.01dp"
             android:text="نمایش اطلاعات خودرو"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="13dp" />
 
     </LinearLayout>
@@ -118,7 +118,7 @@
             android:layout_marginRight="10dp"
             android:lineSpacingExtra="-0.01dp"
             android:text="ویرایش اطلاعات خودرو"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="13dp" />
 
     </LinearLayout>
@@ -152,7 +152,7 @@
             android:layout_marginRight="10dp"
             android:lineSpacingExtra="-0.01dp"
             android:text="سرویس های خودرو"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="13dp" />
 
     </LinearLayout>
@@ -190,7 +190,7 @@
             android:layout_marginRight="10dp"
             android:lineSpacingExtra="-0.01dp"
             android:text="ثبت سرویس جدید"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="13dp" />
 
     </LinearLayout>
@@ -227,7 +227,7 @@
             android:layout_marginRight="10dp"
             android:lineSpacingExtra="-0.01dp"
             android:text="ارسال پیامک به مشتری"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="13dp" />
 
     </LinearLayout>
@@ -263,7 +263,7 @@
             android:layout_marginRight="10dp"
             android:lineSpacingExtra="-0.01dp"
             android:text="تماس با مشتری"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="13dp" />
 
     </LinearLayout>
@@ -303,7 +303,7 @@
             android:layout_marginRight="10dp"
             android:lineSpacingExtra="-0.01dp"
             android:text="حذف مشتری"
-            android:textColor="@color/gray"
+            android:textColor="@color/old_gray"
             android:textSize="13dp" />
 
     </LinearLayout>

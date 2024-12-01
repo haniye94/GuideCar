@@ -75,7 +75,7 @@
                         android:layout_gravity="center"
                         android:layout_width="50dp"
                         android:layout_height="10dp"
-                        android:id="@+id/txt_a_cat"
+                        android:id="@+id/tv_category"
                         android:background="@color/shimmer_placeholder"/>
 
 

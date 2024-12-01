@@ -125,7 +125,7 @@
                                 android:hint="شروع ساعت کاری صبح"
                                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
                                 app:boxStrokeWidthFocused="1dp"
-                                app:placeholderTextColor="@color/gray">
+                                app:placeholderTextColor="@color/old_gray">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/edt_time_start"
@@ -158,7 +158,7 @@
                                 android:hint="پایان ساعت کاری صبح"
                                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
                                 app:boxStrokeWidthFocused="1dp"
-                                app:placeholderTextColor="@color/gray">
+                                app:placeholderTextColor="@color/old_gray">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/edt_time_end"
@@ -199,7 +199,7 @@
                                 android:hint="شروع ساعت کاری بعد از ظهر"
                                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
                                 app:boxStrokeWidthFocused="1dp"
-                                app:placeholderTextColor="@color/gray">
+                                app:placeholderTextColor="@color/old_gray">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/edt_time_start2"
@@ -232,7 +232,7 @@
                                 android:hint="پایان ساعت کاری بعد از ظهر"
                                 app:boxStrokeColor="@color/mtrl_textinput_default_box_stroke_color"
                                 app:boxStrokeWidthFocused="1dp"
-                                app:placeholderTextColor="@color/gray">
+                                app:placeholderTextColor="@color/old_gray">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/edt_time_end2"

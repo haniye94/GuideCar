@@ -34,11 +34,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.servicea.activities.AddCustomerActivity;
+import com.servicea.activities.AddNewCarActivity;
 import com.servicea.activities.AlarmsActivity;
-import com.servicea.activities.CustomerActivity;
+import com.servicea.activities.CarListActivity;
 import com.servicea.adapter.AdapterDoneServiceType;
-import com.servicea.adapter.AdapterListGridMain;
 import com.servicea.app.CalendarTool;
 import com.servicea.app.Constants;
 import com.servicea.app.DataBaseHelper;
@@ -72,7 +71,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence;
-import uk.co.deanwild.materialshowcaseview.MaterialShowcaseView;
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig;
 
 import com.servicea.app.Constants.PLAK_TYPE;
@@ -954,9 +952,9 @@ public class AddServicesActivity extends AppCompatActivity {
                 if (send_msg_prov) {
                     G.sendSMSProv(txt_phone_customer.getText().toString(), G.PROV_ADD_Service);
                 }
-                Intent intentThatStartsCustomerActivity = new Intent(AddServicesActivity.this, CustomerActivity.class);
-                intentThatStartsCustomerActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intentThatStartsCustomerActivity);
+                Intent intentThatStartsCarListActivity = new Intent(AddServicesActivity.this, CarListActivity.class);
+                intentThatStartsCarListActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intentThatStartsCarListActivity);
                 finish();
             }
         } catch (JSONException e) {
@@ -1014,7 +1012,7 @@ public class AddServicesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                startActivity(new Intent(AddServicesActivity.this, CustomerActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                startActivity(new Intent(AddServicesActivity.this, CarListActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
 
@@ -1043,7 +1041,7 @@ public class AddServicesActivity extends AppCompatActivity {
         txt_edit_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddServicesActivity.this, AddCustomerActivity.class);
+                Intent intent = new Intent(AddServicesActivity.this, AddNewCarActivity.class);
                 intent.putExtra("idCustomer", getIntent().getExtras().getString("idCustomer"));
                 intent.putExtra("id_car", getIntent().getExtras().getString("id_car"));
                 intent.putExtra("firstName", getIntent().getExtras().getString("firstName"));
